@@ -1,6 +1,9 @@
 #ifndef LISTE_H
 #define LISTE_H
 
+#include "ListePrincipale.h"
+#include "ListeSecondaire.h"
+
 class Liste
 {
     public:
