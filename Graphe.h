@@ -9,12 +9,14 @@ class Graphe
 {
 public:
     Graphe();
-    virtual void distance(FsAps* fsaps, int s, int* &d) = 0;
-    virtual void calcul_rang(FsAps* fs_aps, int* &rang, int* &pilch, int* &prem);
-    
+
+    virtual void afficher() =0;
+    virtual void distance(FsAps* fsaps, int s, int* &d) =0;
+    virtual void calcul_rang(FsAps* fs_aps, int* &rang, int* &pilch, int* &prem) =0;
+
 
 private:
-        
+
 };
 
 
