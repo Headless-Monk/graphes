@@ -24,6 +24,7 @@ void ListePrincipale::afficher(std::ostream &os) const
     }
 }
 
+/*GET*/
 
 int ListePrincipale::sommet()
 {
@@ -33,6 +34,18 @@ int ListePrincipale::sommet()
 ListePrincipale* ListePrincipale::sommet_suivant()
 {
     return d_sommet_suivant;
+}
+
+ListeSecondaire* ListePrincipale::successeur_suivant()
+{
+    return d_successeur_suivant;
+}
+
+/*SET*/
+
+void ListePrincipale::sommet(int sommet)
+{
+    d_sommet = sommet;
 }
 
 void ListePrincipale::sommet_suivant(ListePrincipale *sommet)
@@ -45,6 +58,7 @@ void ListePrincipale::successeur_suivant(ListeSecondaire *successeur)
     d_successeur_suivant = successeur;
 }
 
+/*surcharges opérateur*/
 
 std::ostream& operator<<(std::ostream &os, const ListePrincipale &liste)
 {

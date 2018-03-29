@@ -14,11 +14,15 @@ class ListeSecondaire
 
         void afficher(std::ostream &os) const;
 
-        /*SET*/
-        void successeur_suivant(ListeSecondaire *successeur);
-
         /*GET*/
+        int arc();
         ListeSecondaire* successeur_suivant();
+        ListePrincipale* sommet_pointe();
+
+        /*SET*/
+        void arc(int arc);
+        void successeur_suivant(ListeSecondaire *successeur);
+        void sommet_pointe(ListePrincipale *sommet);
 
         /*surcharges opérateur*/
         friend std::ostream& operator<<(std::ostream& os, const ListeSecondaire &liste);

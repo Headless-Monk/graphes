@@ -17,8 +17,10 @@ class ListePrincipale
         /*GET*/
         int sommet();
         ListePrincipale* sommet_suivant();
+        ListeSecondaire* successeur_suivant();
 
         /*SET*/
+        void sommet(int sommet);
         void sommet_suivant(ListePrincipale *sommet);
         void successeur_suivant(ListeSecondaire *successeur);
 

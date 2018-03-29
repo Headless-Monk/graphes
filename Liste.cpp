@@ -15,6 +15,9 @@ void Liste::afficher(std::ostream &os) const
 }
 
 
+
+/*surcharges opérateur*/
+
 std::ostream& operator<<(std::ostream &os, const Liste &liste)
 {
     liste.afficher(os);
