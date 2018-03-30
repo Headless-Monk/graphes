@@ -1,20 +1,22 @@
 #include "ListePrincipale.h"
 
 ListePrincipale::ListePrincipale() :
-    d_sommet{0},
+    d_cle_sommet{0},
+    d_sommet{},
     d_sommet_suivant{nullptr},
     d_successeur_suivant{nullptr}
 {}
 
-ListePrincipale::ListePrincipale(int sommet) :
-    d_sommet{sommet},
+ListePrincipale::ListePrincipale(int cle_sommet) :
+    d_cle_sommet{cle_sommet},
+    d_sommet{},
     d_sommet_suivant{nullptr},
     d_successeur_suivant{nullptr}
 {}
 
 void ListePrincipale::afficher(std::ostream &os) const
 {
-    os << d_sommet;
+    os << d_cle_sommet;
 
     ListeSecondaire *successeur = d_successeur_suivant;
     while(successeur)
@@ -26,9 +28,9 @@ void ListePrincipale::afficher(std::ostream &os) const
 
 /*GET*/
 
-int ListePrincipale::sommet()
+int ListePrincipale::cle_sommet()
 {
-    return d_sommet;
+    return d_cle_sommet;
 }
 
 ListePrincipale* ListePrincipale::sommet_suivant()
@@ -43,9 +45,9 @@ ListeSecondaire* ListePrincipale::successeur_suivant()
 
 /*SET*/
 
-void ListePrincipale::sommet(int sommet)
+void ListePrincipale::cle_sommet(int cle_sommet)
 {
-    d_sommet = sommet;
+    d_cle_sommet = cle_sommet;
 }
 
 void ListePrincipale::sommet_suivant(ListePrincipale *sommet)

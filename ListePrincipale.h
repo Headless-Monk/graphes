@@ -4,23 +4,26 @@
 #include <iostream>
 
 #include "ListeSecondaire.h"
+#include "Sommet.h"
 
 class ListeSecondaire;
 class ListePrincipale
 {
     public:
         ListePrincipale();
-        ListePrincipale(int sommet);
+        ListePrincipale(int cle_sommet);
 
         void afficher(std::ostream &os) const;
 
         /*GET*/
-        int sommet();
+        int cle_sommet();
+        //Sommet sommet();
         ListePrincipale* sommet_suivant();
         ListeSecondaire* successeur_suivant();
 
         /*SET*/
-        void sommet(int sommet);
+        void cle_sommet(int cle_sommet);
+        //void Sommet(Sommet &sommet);
         void sommet_suivant(ListePrincipale *sommet);
         void successeur_suivant(ListeSecondaire *successeur);
 
@@ -28,7 +31,8 @@ class ListePrincipale
         friend std::ostream& operator<<(std::ostream& os, const ListePrincipale &liste);
 
     private:
-        int d_sommet;
+        int d_cle_sommet;
+        Sommet d_sommet;
         ListePrincipale *d_sommet_suivant;
         ListeSecondaire *d_successeur_suivant;
 

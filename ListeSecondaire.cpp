@@ -14,7 +14,7 @@ ListeSecondaire::ListeSecondaire(ListePrincipale *sommet) :
 
 void ListeSecondaire::afficher(std::ostream &os) const
 {
-    os << d_sommet_pointe->sommet();
+    os << d_sommet_pointe->cle_sommet();
 }
 
 /*GET*/
