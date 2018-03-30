@@ -6,6 +6,11 @@ Liste::Liste() : d_racine{nullptr}
 Liste::Liste(ListePrincipale *racine) : d_racine{racine}
 {}
 
+Liste::~Liste()
+{
+    delete d_racine;
+}
+
 void Liste::afficher(std::ostream &os) const
 {
     ListePrincipale *liste = d_racine;

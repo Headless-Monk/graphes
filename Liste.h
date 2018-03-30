@@ -9,6 +9,7 @@ class Liste
     public:
         Liste();
         Liste(ListePrincipale *racine);
+        ~Liste();
 
         void afficher(std::ostream &os) const;
         void ajouter_sommet();

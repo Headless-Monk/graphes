@@ -12,6 +12,7 @@ class ListePrincipale
     public:
         ListePrincipale();
         ListePrincipale(int cle_sommet);
+        ~ListePrincipale();
 
         void afficher(std::ostream &os) const;
         void ajouter_successeur(ListePrincipale *sommet);

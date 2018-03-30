@@ -65,8 +65,8 @@ void test_liste_secondaire_2()
 
 int main(int argc, char *argv[])
 {
-    test_liste_secondaire();
-    cout << endl << "---------------------" << endl << endl;
+    //test_liste_secondaire();
+    //cout << endl << "---------------------" << endl << endl;
     test_liste_secondaire_2();
 
     return 0;

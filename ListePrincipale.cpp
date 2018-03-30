@@ -14,6 +14,12 @@ ListePrincipale::ListePrincipale(int cle_sommet) :
     d_successeur_suivant{nullptr}
 {}
 
+ListePrincipale::~ListePrincipale()
+{
+    delete d_sommet_suivant;
+    delete d_successeur_suivant;
+}
+
 void ListePrincipale::afficher(std::ostream &os) const
 {
     os << d_cle_sommet;
