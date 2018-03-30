@@ -1,0 +1,16 @@
+#ifndef FSAPS_H
+#define FSAPS_H
+
+class FsAps
+{
+    public:
+        vector <int> getFs() ;
+        vector <int> getAps() ;
+        
+    private:
+    	vector <int> d_fs ;
+    	vector <int> d_aps ;
+};
+
+
+#endif // FSAPS_H
