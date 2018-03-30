@@ -1,8 +1,0 @@
-#include "FsAps.h"
-
-
-vector <int> getFs() ;
-vector <int> getAps() ;
-int longueurFs() ;
-int longueurAps() ;
-int nombreArc() ; 
