@@ -11,6 +11,7 @@ class FsAps
     public:
 
         FsAps(vector<int>, vector<int>);
+        FsAps(vector<int>);
         vector <int> getFs() const;
         vector <int> getAps() const;
         int longueurFs() const;
