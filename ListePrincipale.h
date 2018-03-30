@@ -14,6 +14,7 @@ class ListePrincipale
         ListePrincipale(int cle_sommet);
 
         void afficher(std::ostream &os) const;
+        void ajouter_successeur(ListePrincipale *sommet);
 
         /*GET*/
         int cle_sommet();

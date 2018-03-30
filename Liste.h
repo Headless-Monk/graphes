@@ -7,10 +7,12 @@
 class Liste
 {
     public:
+        Liste();
         Liste(ListePrincipale *racine);
 
         void afficher(std::ostream &os) const;
-
+        void ajouter_sommet();
+        void ajouter_successeur(int numero_sommet, int numero_sommet_successeur);
 
         /*surcharges opérateur*/
         friend std::ostream& operator<<(std::ostream& os, const Liste &liste);

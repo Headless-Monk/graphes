@@ -38,8 +38,26 @@ void test_liste_secondaire()
     p3.successeur_suivant(&s5);
     p4.successeur_suivant(&s6);
 
-    Liste l(&p1);
+    Liste l{&p1};
 
+    cout << l;
+}
+
+void test_liste_secondaire_2()
+{
+    Liste l{};
+
+    l.ajouter_sommet();
+    l.ajouter_sommet();
+    l.ajouter_sommet();
+    l.ajouter_sommet();
+
+    l.ajouter_successeur(1,1);
+    l.ajouter_successeur(1,2);
+    l.ajouter_successeur(2,3);
+    l.ajouter_successeur(2,4);
+    l.ajouter_successeur(3,2);
+    l.ajouter_successeur(4,1);
 
     cout << l;
 
@@ -48,6 +66,8 @@ void test_liste_secondaire()
 int main(int argc, char *argv[])
 {
     test_liste_secondaire();
+    cout << endl << "---------------------" << endl << endl;
+    test_liste_secondaire_2();
 
     return 0;
 }

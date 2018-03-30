@@ -26,6 +26,30 @@ void ListePrincipale::afficher(std::ostream &os) const
     }
 }
 
+void ListePrincipale::ajouter_successeur(ListePrincipale *sommet)
+{
+    ListeSecondaire *successeur = d_successeur_suivant;
+    ListeSecondaire *precedent = d_successeur_suivant;
+
+    while(successeur)
+    {
+        precedent = successeur;
+        successeur = successeur->successeur_suivant();
+    }
+
+    ListeSecondaire *nouveau_successeur = new ListeSecondaire{sommet};
+    if(precedent != nullptr)
+    {
+        precedent->successeur_suivant(nouveau_successeur);
+    }
+    else
+    {
+        d_successeur_suivant = nouveau_successeur;
+    }
+}
+
+
+
 /*GET*/
 
 int ListePrincipale::cle_sommet()
