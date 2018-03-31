@@ -59,6 +59,10 @@ void test_liste_secondaire_2()
     l.ajouter_successeur(3,2);
     l.ajouter_successeur(4,1);
 
+    cout << l << endl << "--------------" << endl << endl;
+
+    l.supprimer_sommet(4);
+
     cout << l;
 
 }

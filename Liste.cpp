@@ -1,9 +1,9 @@
 #include "Liste.h"
 
-Liste::Liste() : d_racine{nullptr}
+Liste::Liste() : d_racine{nullptr}, d_nombre_sommets{0}
 {}
 
-Liste::Liste(ListePrincipale *racine) : d_racine{racine}
+Liste::Liste(ListePrincipale *racine) : d_racine{racine}, d_nombre_sommets{1}
 {}
 
 Liste::~Liste()
@@ -48,6 +48,82 @@ void Liste::ajouter_sommet()
 
 void Liste::ajouter_successeur(int numero_sommet, int numero_sommet_successeur)
 {
+    ListePrincipale *sommet = sommet_position(numero_sommet);
+    ListePrincipale *sommet_successeur = sommet_position(numero_sommet_successeur);
+
+    sommet->ajouter_successeur(sommet_successeur);
+}
+
+void Liste::supprimer_arcs_vers(int numero_sommet)
+{
+    ListePrincipale *sommet = sommet_position(numero_sommet);
+    ListePrincipale *sommet_courant = d_racine;
+
+    while(sommet_courant)
+    {
+        if(sommet_courant != sommet)
+        {
+            sommet_courant->supprimer_arcs_vers(sommet);
+        }
+        sommet_courant = sommet_courant->sommet_suivant();
+    }
+}
+
+void Liste::supprimer_arcs(int numero_sommet)
+{
+    ListePrincipale *sommet = sommet_position(numero_sommet);
+    sommet->supprimer_arcs();
+}
+
+void Liste::supprimer_sommet(int numero_sommet)
+{
+    //suppression des arcs
+    supprimer_arcs_vers(numero_sommet);
+    supprimer_arcs(numero_sommet);
+
+    //suppression des sommets
+    ListePrincipale *sommet = sommet_position(numero_sommet);
+    ListePrincipale *sommet_courant = d_racine, *precedent = d_racine;
+
+    while(sommet_courant != sommet)
+    {
+        precedent = sommet_courant;
+        sommet_courant = sommet_courant->sommet_suivant();
+    }
+
+    if(sommet_courant == d_racine)
+    {
+        d_racine = d_racine->sommet_suivant();
+    }
+    else
+    {
+        precedent->sommet_suivant(sommet_courant->sommet_suivant());
+    }
+
+    delete sommet_courant;
+
+    //mise à jour des cles sommets
+    if(d_racine->cle_sommet() != 1)
+    {
+        d_racine->cle_sommet(1);
+        sommet_courant = d_racine->sommet_suivant();
+    }
+    else
+    {
+        sommet_courant = precedent->sommet_suivant();
+    }
+
+    while(sommet_courant)
+    {
+        sommet_courant->cle_sommet(precedent->cle_sommet()+1);
+        precedent = sommet_courant;
+        sommet_courant = sommet_courant->sommet_suivant();
+    }
+}
+
+/*
+void ListePrincipale::supprimer_arc(int numero_sommet, int numero_sommet_successeur)
+{
     int sommet_courant = 1, sommet_successeur_courant = 1;
     ListePrincipale *sommet = d_racine, *sommet_successeur = d_racine;
 
@@ -62,10 +138,23 @@ void Liste::ajouter_successeur(int numero_sommet, int numero_sommet_successeur)
         sommet_successeur_courant++;
         sommet_successeur = sommet_successeur->sommet_suivant();
     }
+}*/
 
-    sommet->ajouter_successeur(sommet_successeur);
+
+/*GET*/
+ListePrincipale* Liste::sommet_position(int position)
+{
+    int sommet_courant = 1;
+    ListePrincipale *sommet = d_racine;
+
+    while(sommet_courant != position)
+    {
+        sommet_courant++;
+        sommet = sommet->sommet_suivant();
+    }
+
+    return sommet;
 }
-
 
 /*surcharges opérateur*/
 

@@ -54,6 +54,46 @@ void ListePrincipale::ajouter_successeur(ListePrincipale *sommet)
     }
 }
 
+void ListePrincipale::supprimer_arcs_vers(ListePrincipale *sommet)
+{
+    ListeSecondaire *successeur = d_successeur_suivant;
+    ListeSecondaire *precedent = d_successeur_suivant;
+
+    while( (successeur != nullptr) && (successeur->sommet_pointe() != sommet))
+    {
+        precedent = successeur;
+        successeur = successeur->successeur_suivant();
+    }
+
+    if(successeur != nullptr)
+    {
+        if(d_successeur_suivant->sommet_pointe() == sommet)
+        {
+            d_successeur_suivant = successeur->successeur_suivant();
+        }
+        else
+        {
+            precedent->successeur_suivant(successeur->successeur_suivant());
+        }
+
+        delete successeur;
+    }
+}
+
+void ListePrincipale::supprimer_arcs()
+{
+    ListeSecondaire *successeur = d_successeur_suivant;
+    ListeSecondaire *precedent = d_successeur_suivant;
+
+    while(successeur)
+    {
+        precedent = successeur;
+        successeur = successeur->successeur_suivant();
+        delete precedent;
+    }
+
+    d_successeur_suivant = nullptr;
+}
 
 
 /*GET*/
