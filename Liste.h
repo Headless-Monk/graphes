@@ -7,10 +7,29 @@
 class Liste
 {
     public:
-        
+        Liste();
+        Liste(ListePrincipale *racine);
+        ~Liste();
+
+        void afficher(std::ostream &os) const;
+        void ajouter_sommet();
+        void ajouter_successeur(int numero_sommet, int numero_sommet_successeur);
+
+        void supprimer_arcs_vers(int numero_sommet);
+        void supprimer_arcs(int numero_sommet);
+        void supprimer_sommet(int numero_sommet);
+        //void supprimer_arc(int numero_sommet, int numero_sommet_successeur);
+
+        /*GET*/
+        ListePrincipale* sommet_position(int position);
+
+        /*surcharges opérateur*/
+        friend std::ostream& operator<<(std::ostream& os, const Liste &liste);
 
     private:
-        
+
+        ListePrincipale *d_racine;
+        int d_nombre_sommets;
 };
 
 
