@@ -17,6 +17,9 @@ class FsAps
         // méthodes
         vector <int> distance(int) ;
         vector <vector<int>> matrice_distance () ;
+        void tarjan() ;
+        void traversee( int) ;
+        void empiler(int, vector <int>) ;
 
         // accesseur
         vector <int> getFs() const;
@@ -28,6 +31,10 @@ class FsAps
     private:
     	vector <int> d_fs ;
     	vector <int> d_aps ;
+
+    	vector <int> num, mu, prem, pilch, cfc, tarj ;
+        vector <bool> enTarj ;
+        int nbc ;
 };
 
 

@@ -63,6 +63,64 @@ vector <vector<int>> FsAps::matrice_distance ()
     return dist ;
 }
 
+void FsAps::tarjan()
+{
+    int n = longueurAps() ;
+    nbc = 0 ;
+    for (int i =1 ; i<= n ; i++)
+    {
+        num[i] = 0 ;
+        enTarj[i] = false ;
+    }
+    pilch[0] = 0 ;
+    tarj[0] = 0 ;
+    for (int s= 1 ; s<= n ;s++)
+        if(num[s] = 0) traversee(s);
+    prem[0]= nbc ;
+}
+
+void FsAps::traversee(int s)
+{
+    int t ; int p = 1 ;
+    num [s] = p ;
+    p++ ;
+    mu[s] = num[s];
+    empiler(s, tarj);
+    enTarj[s] = true;
+    for (int k = d_aps[s] ; (t=d_fs[k])!= 0 ; k++)
+    {
+        if (num[t] == 0)
+        {
+            traversee(t) ;
+            if (num[t] < mu[s])mu[s] = mu[t] ;
+            else
+            {
+                if (enTarj[t] && (num[t] < num[s]))
+                    if (num[t] < num[s])
+                        mu[s] = num[t] ;
+            }
+        }
+    }
+    if (mu[s] == num[s])
+    {
+        nbc ++ ;
+        int x = tarj[0] ;
+        prem[nbc] = x;
+        while (x != s)
+        {
+            empiler(x, pilch) ;
+            cfc[x] = nbc ;
+            x = tarj[x] ;
+        }
+    }
+}
+
+void FsAps::empiler(int x , vector<int> pilchEmpiler)
+{
+    pilchEmpiler [x] = pilchEmpiler[0] ;
+    pilchEmpiler[0] = x ;
+}
+
 // accesseurs
 
 vector <int> FsAps::getFs() const
