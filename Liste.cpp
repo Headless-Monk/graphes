@@ -8,7 +8,14 @@ Liste::Liste(ListePrincipale *racine) : d_racine{racine}, d_nombre_sommets{1}
 
 Liste::~Liste()
 {
-    delete d_racine;
+    ListePrincipale *liste = d_racine;
+
+    while(liste)
+    {
+        d_racine = liste;
+        liste = liste->sommet_suivant();
+        delete d_racine;
+    }
 }
 
 void Liste::afficher(std::ostream &os) const
@@ -156,7 +163,7 @@ ListePrincipale* Liste::sommet_position(int position)
     return sommet;
 }
 
-/*surcharges opérateur*/
+/*surcharges opï¿½rateur*/
 
 std::ostream& operator<<(std::ostream &os, const Liste &liste)
 {

@@ -16,8 +16,14 @@ ListePrincipale::ListePrincipale(int cle_sommet) :
 
 ListePrincipale::~ListePrincipale()
 {
-    delete d_sommet_suivant;
-    delete d_successeur_suivant;
+    ListeSecondaire *liste = d_successeur_suivant;
+
+    while(liste)
+    {
+        d_successeur_suivant = liste;
+        liste = liste->successeur_suivant();
+        delete d_successeur_suivant;
+    }
 }
 
 void ListePrincipale::afficher(std::ostream &os) const
@@ -130,7 +136,7 @@ void ListePrincipale::successeur_suivant(ListeSecondaire *successeur)
     d_successeur_suivant = successeur;
 }
 
-/*surcharges opérateur*/
+/*surcharges opï¿½rateur*/
 
 std::ostream& operator<<(std::ostream &os, const ListePrincipale &liste)
 {
