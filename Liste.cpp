@@ -70,7 +70,7 @@ void Liste::supprimer_arcs_vers(int numero_sommet)
     {
         if(sommet_courant != sommet)
         {
-            sommet_courant->supprimer_arcs_vers(sommet);
+            sommet_courant->supprimer_arc_vers(sommet);
         }
         sommet_courant = sommet_courant->sommet_suivant();
     }
@@ -128,24 +128,13 @@ void Liste::supprimer_sommet(int numero_sommet)
     }
 }
 
-/*
-void ListePrincipale::supprimer_arc(int numero_sommet, int numero_sommet_successeur)
+void Liste::supprimer_arc(int numero_sommet, int numero_sommet_successeur)
 {
-    int sommet_courant = 1, sommet_successeur_courant = 1;
-    ListePrincipale *sommet = d_racine, *sommet_successeur = d_racine;
+    ListePrincipale *sommet = sommet_position(numero_sommet);
+    ListePrincipale *sommet_successeur = sommet_position(numero_sommet_successeur);
 
-    while(sommet_courant != numero_sommet)
-    {
-        sommet_courant++;
-        sommet = sommet->sommet_suivant();
-    }
-
-    while(sommet_successeur_courant != numero_sommet_successeur)
-    {
-        sommet_successeur_courant++;
-        sommet_successeur = sommet_successeur->sommet_suivant();
-    }
-}*/
+    sommet->supprimer_arc_vers(sommet_successeur);
+}
 
 
 /*GET*/

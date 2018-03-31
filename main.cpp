@@ -27,7 +27,8 @@ void test_liste_secondaire_2()
 
     cout << l << endl << "--------------" << endl << endl;
 
-    l.supprimer_sommet(1);
+    l.supprimer_sommet(2);
+    l.supprimer_arc(3, 1);
 
     cout << l;
 }

@@ -60,7 +60,7 @@ void ListePrincipale::ajouter_successeur(ListePrincipale *sommet)
     }
 }
 
-void ListePrincipale::supprimer_arcs_vers(ListePrincipale *sommet)
+void ListePrincipale::supprimer_arc_vers(ListePrincipale *sommet)
 {
     ListeSecondaire *successeur = d_successeur_suivant;
     ListeSecondaire *precedent = d_successeur_suivant;

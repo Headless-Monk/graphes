@@ -18,7 +18,7 @@ class Liste
         void supprimer_arcs_vers(int numero_sommet);
         void supprimer_arcs(int numero_sommet);
         void supprimer_sommet(int numero_sommet);
-        //void supprimer_arc(int numero_sommet, int numero_sommet_successeur);
+        void supprimer_arc(int numero_sommet, int numero_sommet_successeur);
 
         /*GET*/
         ListePrincipale* sommet_position(int position);

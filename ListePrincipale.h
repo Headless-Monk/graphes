@@ -17,7 +17,7 @@ class ListePrincipale
         void afficher(std::ostream &os) const;
         void ajouter_successeur(ListePrincipale *sommet);
 
-        void supprimer_arcs_vers(ListePrincipale *sommet);
+        void supprimer_arc_vers(ListePrincipale *sommet);
         void supprimer_arcs();
 
         /*GET*/
