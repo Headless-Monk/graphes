@@ -24,6 +24,13 @@ class FsAps
         // accesseur
         vector <int> getFs() const;
         vector <int> getAps() const;
+
+        int index_getFs(int i) const;
+        int index_getAps(int i) const;
+
+        void index_setFs(int i, int valeur);
+        void index_setAps(int i, int valeur);
+
         int longueurFs() const;
         int longueurAps() const ;
         int nombreArc() const;

@@ -128,18 +128,42 @@ vector <int> FsAps::getFs() const
 {
     return d_fs;
 }
+
 vector <int> FsAps::getAps() const
 {
     return d_aps;
 }
-int FsAps::longueurFs()const
+
+int FsAps::index_getFs(int i) const
+{
+    return d_fs[i];
+}
+
+int FsAps::index_getAps(int i) const
+{
+    return d_aps[i];
+}
+
+void FsAps::index_setFs(int i, int valeur)
+{
+    d_fs[i] = valeur;
+}
+
+void FsAps::index_setAps(int i, int valeur)
+{
+    d_aps[i] = valeur;
+}
+
+int FsAps::longueurFs() const
 {
     return d_fs.size();
 }
+
 int FsAps::longueurAps() const
 {
      return d_aps.size();
 }
+
 int FsAps::nombreArc()const
 {
     return ((longueurFs()-1)-(longueurAps()-1)); // on enleve fs[0] et aps[0]
