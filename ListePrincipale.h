@@ -7,19 +7,13 @@
 #include "Sommet.h"
 
 class ListeSecondaire;
+class Liste;
 class ListePrincipale
 {
+    friend Liste;
+
+
     public:
-        ListePrincipale();
-        ListePrincipale(int cle_sommet);
-        ~ListePrincipale();
-
-        void afficher(std::ostream &os) const;
-        void ajouter_successeur(ListePrincipale *sommet);
-
-        void supprimer_arc_vers(ListePrincipale *sommet);
-        void supprimer_arcs();
-
         /*GET*/
         int cle_sommet();
         //Sommet sommet();
@@ -36,6 +30,17 @@ class ListePrincipale
         friend std::ostream& operator<<(std::ostream& os, const ListePrincipale &liste);
 
     private:
+        ListePrincipale() =delete;
+        ListePrincipale(int cle_sommet);
+        ~ListePrincipale();
+
+        void afficher(std::ostream &os) const;
+        void ajouter_successeur(ListePrincipale *sommet);
+
+        void supprimer_arc_vers(ListePrincipale *sommet);
+        void supprimer_arcs();
+
+
         int d_cle_sommet;
         Sommet d_sommet;
         ListePrincipale *d_sommet_suivant;

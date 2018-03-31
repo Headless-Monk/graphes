@@ -10,12 +10,7 @@ using std::endl;
 
 void test_liste_secondaire_2()
 {
-    Liste l{};
-
-    l.ajouter_sommet();
-    l.ajouter_sommet();
-    l.ajouter_sommet();
-    l.ajouter_sommet();
+    Liste l{4};
 
     l.ajouter_successeur(1,1);
     l.ajouter_successeur(1,2);
@@ -27,8 +22,10 @@ void test_liste_secondaire_2()
 
     cout << l << endl << "--------------" << endl << endl;
 
-    l.supprimer_sommet(2);
-    l.supprimer_arc(3, 1);
+    //l.supprimer_sommet(5);
+    //l.supprimer_arc(5, 3);
+    //l.ajouter_sommet();
+    //l.ajouter_successeur(1,5);
 
     cout << l;
 }

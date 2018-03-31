@@ -8,10 +8,9 @@
 class ListePrincipale;
 class ListeSecondaire
 {
-    public:
-        ListeSecondaire();
-        ListeSecondaire(ListePrincipale *sommet);
+    friend ListePrincipale;
 
+    public:
         void afficher(std::ostream &os) const;
 
         /*GET*/
@@ -28,6 +27,9 @@ class ListeSecondaire
         friend std::ostream& operator<<(std::ostream& os, const ListeSecondaire &liste);
 
     private:
+        ListeSecondaire() =delete;
+        ListeSecondaire(ListePrincipale *sommet);
+
         int d_arc;
         ListeSecondaire *d_successeur_suivant;
         ListePrincipale *d_sommet_pointe;

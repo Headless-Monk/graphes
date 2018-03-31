@@ -8,6 +8,7 @@ class Liste
 {
     public:
         Liste();
+        Liste(int nombre_sommet);
         Liste(ListePrincipale *racine);
         ~Liste();
 
@@ -15,8 +16,6 @@ class Liste
         void ajouter_sommet();
         void ajouter_successeur(int numero_sommet, int numero_sommet_successeur);
 
-        void supprimer_arcs_vers(int numero_sommet);
-        void supprimer_arcs(int numero_sommet);
         void supprimer_sommet(int numero_sommet);
         void supprimer_arc(int numero_sommet, int numero_sommet_successeur);
 
@@ -27,6 +26,9 @@ class Liste
         friend std::ostream& operator<<(std::ostream& os, const Liste &liste);
 
     private:
+        void supprimer_arcs_vers(int numero_sommet);
+        void supprimer_arcs_de(int numero_sommet);
+        bool indice_valide(int position);
 
         ListePrincipale *d_racine;
         int d_nombre_sommets;

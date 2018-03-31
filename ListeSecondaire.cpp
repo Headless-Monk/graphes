@@ -1,17 +1,5 @@
 #include "ListeSecondaire.h"
 
-ListeSecondaire::ListeSecondaire() :
-    d_arc{0},
-    d_successeur_suivant{nullptr},
-    d_sommet_pointe{nullptr}
-{}
-
-ListeSecondaire::ListeSecondaire(ListePrincipale *sommet) :
-    d_arc{0},
-    d_successeur_suivant{nullptr},
-    d_sommet_pointe{sommet}
-{}
-
 void ListeSecondaire::afficher(std::ostream &os) const
 {
     os << d_sommet_pointe->cle_sommet();
@@ -58,3 +46,11 @@ std::ostream& operator<<(std::ostream &os, const ListeSecondaire &liste)
     liste.afficher(os);
     return os;
 }
+
+/*methodes privées*/
+
+ListeSecondaire::ListeSecondaire(ListePrincipale *sommet) :
+    d_arc{0},
+    d_successeur_suivant{nullptr},
+    d_sommet_pointe{sommet}
+{}

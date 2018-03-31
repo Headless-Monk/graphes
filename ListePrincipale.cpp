@@ -1,11 +1,48 @@
 #include "ListePrincipale.h"
 
-ListePrincipale::ListePrincipale() :
-    d_cle_sommet{0},
-    d_sommet{},
-    d_sommet_suivant{nullptr},
-    d_successeur_suivant{nullptr}
-{}
+/*GET*/
+
+int ListePrincipale::cle_sommet()
+{
+    return d_cle_sommet;
+}
+
+ListePrincipale* ListePrincipale::sommet_suivant()
+{
+    return d_sommet_suivant;
+}
+
+ListeSecondaire* ListePrincipale::successeur_suivant()
+{
+    return d_successeur_suivant;
+}
+
+/*SET*/
+
+void ListePrincipale::cle_sommet(int cle_sommet)
+{
+    d_cle_sommet = cle_sommet;
+}
+
+void ListePrincipale::sommet_suivant(ListePrincipale *sommet)
+{
+    d_sommet_suivant = sommet;
+}
+
+void ListePrincipale::successeur_suivant(ListeSecondaire *successeur)
+{
+    d_successeur_suivant = successeur;
+}
+
+/*surcharges operateur*/
+
+std::ostream& operator<<(std::ostream &os, const ListePrincipale &liste)
+{
+    liste.afficher(os);
+    return os;
+}
+
+/*methodes privees*/
 
 ListePrincipale::ListePrincipale(int cle_sommet) :
     d_cle_sommet{cle_sommet},
@@ -99,47 +136,4 @@ void ListePrincipale::supprimer_arcs()
     }
 
     d_successeur_suivant = nullptr;
-}
-
-
-/*GET*/
-
-int ListePrincipale::cle_sommet()
-{
-    return d_cle_sommet;
-}
-
-ListePrincipale* ListePrincipale::sommet_suivant()
-{
-    return d_sommet_suivant;
-}
-
-ListeSecondaire* ListePrincipale::successeur_suivant()
-{
-    return d_successeur_suivant;
-}
-
-/*SET*/
-
-void ListePrincipale::cle_sommet(int cle_sommet)
-{
-    d_cle_sommet = cle_sommet;
-}
-
-void ListePrincipale::sommet_suivant(ListePrincipale *sommet)
-{
-    d_sommet_suivant = sommet;
-}
-
-void ListePrincipale::successeur_suivant(ListeSecondaire *successeur)
-{
-    d_successeur_suivant = successeur;
-}
-
-/*surcharges op�rateur*/
-
-std::ostream& operator<<(std::ostream &os, const ListePrincipale &liste)
-{
-    liste.afficher(os);
-    return os;
 }
