@@ -15,7 +15,7 @@ FsAps::FsAps(vector<int> fs)
     aps.push_back(0);
     aps.push_back(d_fs.at(1));
 
-    for (int i = 1 ;i < d_fs.size() ; i++)
+    for (unsigned int i = 1 ;i < d_fs.size() ; i++)
         if (d_fs.at(i) == 0 && (i+1)<d_fs.size()) aps.push_back(d_fs.at(i+1));
 
     d_aps = aps ;
@@ -75,7 +75,8 @@ void FsAps::tarjan()
     pilch[0] = 0 ;
     tarj[0] = 0 ;
     for (int s= 1 ; s<= n ;s++)
-        if(num[s] = 0) traversee(s);
+        if(num[s] == 0)
+            traversee(s);
     prem[0]= nbc ;
 }
 
