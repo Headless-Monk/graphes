@@ -1,5 +1,6 @@
 #include "FsAps.h"
 
+// constructeur
 FsAps::FsAps(vector<int> fs, vector<int> aps)
 {
     d_fs = fs ;
@@ -21,6 +22,48 @@ FsAps::FsAps(vector<int> fs)
     d_aps.insert(d_aps.begin(),d_aps.size()); // longueur aps
 }
 
+// méthodes
+
+vector <int> FsAps::distance(int sommet)
+{
+    int n = longueurAps();
+    vector <int> d ;
+    for (int i =0 ; i <= n ; i++) d[i]=-1;
+    d[0] = n ;
+    vector <int> fa ;
+    int t= 0; int q=1 ;int x ; int p=1 ; int k=0 ;
+    fa[1] = sommet ;
+    d[sommet] = 0 ;
+
+    while(t < q)
+    {
+        k++;
+        for (int i = t+1 ; i <= q ; i++)
+        {
+            for (int j = d_aps[fa[i]] ; (x=d_fs[j]) != 0 ; j++)
+            {
+                if (d[x] == -1)
+                {
+                    d[x] = k ;
+                    fa[++p]=x;
+                }
+            }
+        }
+        t=q;
+        q=p;
+    }
+    return d ;
+}
+vector <vector<int>> FsAps::matrice_distance ()
+{
+    vector <vector<int>> dist ;
+    int n = longueurAps() ;
+    for (int i = 1 ; i <= n ; i++)dist[i]=distance(i);
+    dist [0][0] = n;
+    return dist ;
+}
+
+// accesseurs
 
 vector <int> FsAps::getFs() const
 {
