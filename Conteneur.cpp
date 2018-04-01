@@ -1,5 +1,11 @@
 #include "Conteneur.h"
 
+Conteneur::Conteneur() :
+        d_matrice_adjacence{nullptr},
+        d_liste{nullptr},
+        d_fs_aps{nullptr}
+{}
+
 void Conteneur::fsaps_to_adj()
 {
     std::vector<int> tmp_fs = d_fs_aps->getFs();
@@ -73,4 +79,14 @@ void Conteneur::adj_to_fsasps()
 
 
 
+}
+
+void Conteneur::liste(Liste *li)
+{
+    d_liste = li;
+}
+
+Liste* Conteneur::liste()
+{
+    return d_liste;
 }

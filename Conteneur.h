@@ -18,6 +18,9 @@ public:
     //void fsaps_to_liste();
     //void liste_to_fsaps();
 
+    void liste(Liste *li);
+    Liste* liste();
+
 private:
     MatriceAdjacence *d_matrice_adjacence;
     Liste *d_liste;
