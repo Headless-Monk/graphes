@@ -90,3 +90,13 @@ Liste* Conteneur::liste()
 {
     return d_liste;
 }
+
+MatriceAdjacence* Conteneur::matrice()
+{
+    return d_matrice_adjacence;
+}
+
+FsAps* Conteneur::fs_aps()
+{
+    return d_fs_aps;
+}

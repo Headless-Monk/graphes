@@ -20,6 +20,8 @@ public:
 
     void liste(Liste *li);
     Liste* liste();
+    MatriceAdjacence* matrice();
+    FsAps* fs_aps();
 
 private:
     MatriceAdjacence *d_matrice_adjacence;

@@ -56,13 +56,24 @@ void Interface::afficher_graphe(std::ostream &os, int numero)
     switch(d_type_courant)
     {
     case 0 :
-        os << *d_liste_graphes[numero]->liste();
+        if(d_liste_graphes[numero]->liste())
+            os << *d_liste_graphes[numero]->liste();
+        else
+            os << "Pas de graphe disponible" << endl;
         break;
     case 1 :
         /*matrice*/
+        if(d_liste_graphes[numero]->matrice())
+            /*os << *d_liste_graphes[numero]->matrice()*/;
+        else
+            os << "Pas de graphe disponible" << endl;
         break;
     case 2 :
         /*fs_aps*/
+        if(d_liste_graphes[numero]->fs_aps())
+            /*os << *d_liste_graphes[numero]->fs_aps()*/;
+        else
+            os << "Pas de graphe disponible" << endl;
         break;
     default :
         break;
