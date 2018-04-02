@@ -122,6 +122,55 @@ void FsAps::empiler(int x , vector<int> pilchEmpiler)
     pilchEmpiler[0] = x ;
 }
 
+void FsAps::dijkstra(int** c, int s, int *& d, int *& pred)
+{
+    const int MAXCOUNT = 100 ;
+    int n = longueurAps() ;
+    int cpt = n-1 ;
+    int mini, j, x;
+    d = new int [n+1] ;
+    pred = new int [n+1] ;
+    bool *dans_S = new bool [n+1] ;
+
+    for (int i = 1 ; i<=n ; i++)
+    {
+        d[i] = c[s][i];
+        dans_S[i] = true ;
+    }
+    dans_S[s] = false ;
+    while (cpt>0)
+    {
+        mini = MAXCOUNT ;
+        for (int i = 1 ; i <= n ;i++)
+        {
+            if (dans_S[i])
+            {
+                if (d[i]< mini)
+                {
+                    mini = d[i];
+                    j=i;
+                }
+            }
+        }//for
+
+        if (mini == MAXCOUNT)break ;
+        dans_S[j]=false;
+        cpt-- ;
+        for (int k = d_aps[j] ; (x=d_fs[k])!=0 ; k++)
+        {
+            if (dans_S[x])
+            {
+                int v = d[j] + c[j][x] ;
+                if(v< d[x])
+                {
+                    d[x] = v ;
+                    pred[x] = j;
+                }
+            }
+        } //for
+    }//while
+}//dijkstra
+
 // accesseurs
 
 vector <int> FsAps::getFs() const

@@ -20,6 +20,7 @@ class FsAps
         void tarjan() ;
         void traversee( int) ;
         void empiler(int, vector <int>) ;
+        void dijkstra(int**, int s, int *&, int *&) ;
 
         // accesseur
         vector <int> getFs() const;
