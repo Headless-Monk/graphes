@@ -24,10 +24,9 @@ FsAps::FsAps(vector<int> fs)
 
 // méthodes
 
-vector <int> FsAps::distance(int sommet)
+vector <int> FsAps::distance(int sommet, vector <int> d )
 {
     int n = longueurAps();
-    vector <int> d ;
     for (int i =0 ; i <= n ; i++) d[i]=-1;
     d[0] = n ;
     vector <int> fa ;
@@ -54,11 +53,10 @@ vector <int> FsAps::distance(int sommet)
     }
     return d ;
 }
-vector <vector<int>> FsAps::matrice_distance ()
+vector <vector<int>> FsAps::matrice_distance (vector <vector<int>> dist )
 {
-    vector <vector<int>> dist ;
     int n = longueurAps() ;
-    for (int i = 1 ; i <= n ; i++)dist[i]=distance(i);
+    for (int i = 1 ; i <= n ; i++)dist[i]=distance(i, dist[i]);
     dist [0][0] = n;
     return dist ;
 }
@@ -79,6 +77,7 @@ void FsAps::tarjan()
             traversee(s);
     prem[0]= nbc ;
 }
+
 
 void FsAps::traversee(int s)
 {
@@ -114,6 +113,40 @@ void FsAps::traversee(int s)
             x = tarj[x] ;
         }
     }
+}
+
+void FsAps::graphe_reduit(int *& fsr, int *& apsr)
+{
+    nbc = prem[0] ;
+    apsr = new int [nbc +1];
+    apsr[0] = nbc ;
+    fsr = new int [d_fs[0]+1] ;
+    bool deja_mis = new bool [nbc +1] ;
+    int k = 0 ;
+    for (int c= 1 ; c<= nbc ; c++)
+    {
+        for (int i = 1 ; i<= nbc ; i++)
+            deja_mis[i] = false ;
+        deja_mis[c] = true ;
+        int s =prem[c] ;
+        apsr[c] = k+1 ;
+        while (s!= 0)
+        {
+            for (int l = aps[s] ; (t=d_fs[l])!=0 ; l++)
+            {
+                if (!deja_mis[cfc[t]])
+                {
+                    k++ ;
+                    fsr[k] = cfc[t] ;
+                    deja_mis[cfc[t]] =true;
+                } //if
+            }//for
+            s=pilch[s] ;
+        }//while
+        k++ ;
+        fsr[k] =0;
+    }//for
+    fsr[0] = k ;
 }
 
 void FsAps::empiler(int x , vector<int> pilchEmpiler)
@@ -170,6 +203,39 @@ void FsAps::dijkstra(int** c, int s, int *& d, int *& pred)
         } //for
     }//while
 }//dijkstra
+void FsAps::ordonnancement (int* d , int *& lc , int *& fpc , int *& appc)
+{
+    int n = longueurAps() ;
+    int m = longueurAps() ;
+    lc = new int [n+1] ; lc[0]=n ;
+    appc = new int [n+1] ; appc[0] = n ;
+    fpc = new int [m+1] ; fpc[0] = m ;
+    lc [1] = 0 ;
+    fpc[1] = 0 ;
+    appc[1] = 1;
+    int kc = 1 ;
+    for (int i = 2 ; i<= n ; i++)
+    {
+        lc[i] = 0;
+        appc[i] = kc + 1 ;
+        int j ;
+        for (int k = d_aps[i] ; (j= fpc[k])!=0 ; k++)
+        {
+            int lg = lc[j]+d[j] ;
+            if (lg >= lc[i])
+            {
+                if(lg>lc[i])
+                {
+                    lc[i] = lg ;
+                    kc = appc[i] ;
+                    fpc[kc] = j ;
+                }
+                else fpc[++kc] = j ;
+            }
+        } // for
+        fpc[++kc] =  0;
+    }
+}
 
 // accesseurs
 

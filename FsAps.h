@@ -15,12 +15,14 @@ class FsAps
         FsAps(vector<int>);
 
         // méthodes
-        vector <int> distance(int) ;
-        vector <vector<int>> matrice_distance () ;
+        vector <int> distance(int, vector <int> ) ;
+        vector <vector<int>> matrice_distance (vector <vector<int>>) ;
         void tarjan() ;
+        void graphe_reduit(int *& , int *&) ;
         void traversee( int) ;
         void empiler(int, vector <int>) ;
         void dijkstra(int**, int s, int *&, int *&) ;
+        void ordonnancement (int* , int *& , int *& , int *& );
 
         // accesseur
         vector <int> getFs() const;
