@@ -121,18 +121,21 @@ void FsAps::graphe_reduit(int *& fsr, int *& apsr)
     apsr = new int [nbc +1];
     apsr[0] = nbc ;
     fsr = new int [d_fs[0]+1] ;
-    bool deja_mis = new bool [nbc +1] ;
+    bool* deja_mis = new bool [nbc +1] ;
     int k = 0 ;
     for (int c= 1 ; c<= nbc ; c++)
     {
         for (int i = 1 ; i<= nbc ; i++)
+        {
             deja_mis[i] = false ;
+        }
         deja_mis[c] = true ;
         int s =prem[c] ;
         apsr[c] = k+1 ;
+        int t ;
         while (s!= 0)
         {
-            for (int l = aps[s] ; (t=d_fs[l])!=0 ; l++)
+            for (int l = d_aps[s] ; (t=d_fs[l])!=0 ; l++)
             {
                 if (!deja_mis[cfc[t]])
                 {
@@ -235,6 +238,29 @@ void FsAps::ordonnancement (int* d , int *& lc , int *& fpc , int *& appc)
         } // for
         fpc[++kc] =  0;
     }
+}
+
+void FsAps::afficher(std::ostream &os) const
+{
+    os << "[ " ;
+    for (int i =0 ; i<longueurFs() ; i++)
+    {
+        os << d_fs[i] ;
+    }
+    os << " ]" << std::endl ;
+
+    os << "[ " ;
+    for (int i =0 ; i<longueurFs() ; i++)
+    {
+        os << d_aps[i] ;
+    }
+    os << " ]" << std::endl ;
+}
+
+std::ostream& operator<<(std::ostream &os, const FsAps &fsaps)
+{
+    fsaps.afficher(os);
+    return os;
 }
 
 // accesseurs

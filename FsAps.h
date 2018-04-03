@@ -38,6 +38,11 @@ class FsAps
         int longueurAps() const ;
         int nombreArc() const;
 
+
+        void afficher(std::ostream &os) const;
+        /*surcharges opérateur*/
+        friend std::ostream& operator<<(std::ostream& os, const FsAps &fsaps);
+
     private:
     	vector <int> d_fs ;
     	vector <int> d_aps ;
