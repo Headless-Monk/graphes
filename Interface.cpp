@@ -71,7 +71,7 @@ void Interface::afficher_graphe(std::ostream &os, int numero)
     case 2 :
         /*fs_aps*/
         if(d_liste_graphes[numero]->fs_aps())
-            /*os << *d_liste_graphes[numero]->fs_aps()*/;
+            os << *d_liste_graphes[numero]->fs_aps();
         else
             os << "Pas de graphe disponible" << endl;
         break;
@@ -199,6 +199,39 @@ void Interface::menu_matrice(std::ostream &os, std::istream &is)
 
 void Interface::menu_fs_aps(std::ostream &os, std::istream &is)
 {
-    /*reprendre menu_liste*/
+    int sommet1=0, sommet2=0;
+    int choix = 0;
+    while(choix != 3)
+    {
+        clear_console();
+
+        afficher_graphe(os);
+
+        os << "(1) Ajouter arc" << endl;
+        os << "(2) Supprimer arc" << endl;
+        os << "(3) Retour" << endl << endl;
+
+        is >> choix;
+
+        switch (choix)
+        {
+            case 1:
+                os << "Saisir le numero du sommet de depart : ";
+                is >> sommet1;
+                os << "Saisir le numero du sommet d'arrivee : ";
+                is >> sommet2;
+                //d_liste_graphes[d_graphe_courant]->liste()->ajouter_successeur(sommet1, sommet2);
+                break;
+            case 2:
+                os << "Saisir le numero du sommet de depart : ";
+                is >> sommet1;
+                os << "Saisir le numero du sommet d'arrivee : ";
+                is >> sommet2;
+                //d_liste_graphes[d_graphe_courant]->liste()->ajouter_successeur(sommet1, sommet2);
+                break;
+            default:
+                break;
+        }
+    }
 }
 
