@@ -24,6 +24,10 @@ class FsAps
         void dijkstra(int**, int s, int *&, int *&) ;
         void ordonnancement (int* , int *& , int *& , int *& );
 
+        // gestion structure
+        void ajouter_arc(int, int) ;
+        void supprimer_arc(int, int) ;
+
         // accesseur
         vector <int> getFs() const;
         vector <int> getAps() const;

@@ -240,6 +240,37 @@ void FsAps::ordonnancement (int* d , int *& lc , int *& fpc , int *& appc)
     }
 }
 
+void FsAps::ajouter_arc(int s1, int s2)
+{
+    int indice = d_aps[s1] ;
+    d_fs.insert(d_fs.begin()+indice, s2) ;
+    if(d_aps[s1+1])
+    {
+        for (int i = s1+1 ; i <= longueurAps() ; i++)
+            d_aps[i]++ ;
+    }
+}
+void FsAps::supprimer_arc(int s1, int s2)
+{
+    int indice = 1 ;
+    int supp = 0 ;
+    for (int i = 1 ; i <longueurFs() ; i++)
+    {
+        if(d_fs[s1]==0)indice++ ;
+        if(s1 == indice && d_fs[s1]==s2)
+        {
+            supp = indice ;
+            d_fs.erase(d_fs.begin() + s1) ;
+        }
+        break ;
+    }
+    if(d_aps[supp+1])
+    {
+        for (int i = s1+1 ; i <= longueurAps() ; i++)
+            d_aps[i]-- ;
+    }
+}
+
 void FsAps::afficher(std::ostream &os) const
 {
     os << "[ " ;
