@@ -220,14 +220,14 @@ void Interface::menu_fs_aps(std::ostream &os, std::istream &is)
                 is >> sommet1;
                 os << "Saisir le numero du sommet d'arrivee : ";
                 is >> sommet2;
-                //d_liste_graphes[d_graphe_courant]->liste()->ajouter_successeur(sommet1, sommet2);
+                d_liste_graphes[d_graphe_courant]->fs_aps()->ajouter_arc(sommet1 , sommet2);
                 break;
             case 2:
                 os << "Saisir le numero du sommet de depart : ";
                 is >> sommet1;
                 os << "Saisir le numero du sommet d'arrivee : ";
                 is >> sommet2;
-                //d_liste_graphes[d_graphe_courant]->liste()->ajouter_successeur(sommet1, sommet2);
+                d_liste_graphes[d_graphe_courant]->fs_aps()->supprimer_arc(sommet1 , sommet2);
                 break;
             default:
                 break;
