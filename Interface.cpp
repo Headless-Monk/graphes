@@ -200,8 +200,9 @@ void Interface::menu_matrice(std::ostream &os, std::istream &is)
 void Interface::menu_fs_aps(std::ostream &os, std::istream &is)
 {
     int sommet1=0, sommet2=0;
+    vector <vector<int>> tableau_distance ;
     int choix = 0;
-    while(choix != 3)
+    while(choix != 4)
     {
         clear_console();
 
@@ -209,7 +210,8 @@ void Interface::menu_fs_aps(std::ostream &os, std::istream &is)
 
         os << "(1) Ajouter arc" << endl;
         os << "(2) Supprimer arc" << endl;
-        os << "(3) Retour" << endl << endl;
+        os << "(3) Calcul des distances" << endl;
+        os << "(4) Retour" << endl << endl;
 
         is >> choix;
 
@@ -228,6 +230,18 @@ void Interface::menu_fs_aps(std::ostream &os, std::istream &is)
                 os << "Saisir le numero du sommet d'arrivee : ";
                 is >> sommet2;
                 d_liste_graphes[d_graphe_courant]->fs_aps()->supprimer_arc(sommet1 , sommet2);
+                break;
+            case 3:
+                d_liste_graphes[d_graphe_courant]->fs_aps()->matrice_distance (tableau_distance);
+                for (int i = 1  ; i <= tableau_distance.size() ; i++)
+                {
+                    cout << "Distance de i vers : "<<endl ;
+                    for (int j = 1  ; j <= tableau_distance[i].size() ; j++)
+                    {
+                        if (i!=j)
+                            cout <<" -> "<< j << " = "<< tableau_distance[i][j] ;
+                    }
+                }
                 break;
             default:
                 break;
