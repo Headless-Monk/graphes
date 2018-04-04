@@ -120,7 +120,7 @@ void FsAps::graphe_reduit(int *& fsr, int *& apsr)
     nbc = prem[0] ;
     apsr = new int [nbc +1];
     apsr[0] = nbc ;
-    fsr = new int [d_fs[0]+1] ;
+    fsr = new int [longueurFs()+1] ;
     bool* deja_mis = new bool [nbc +1] ;
     int k = 0 ;
     for (int c= 1 ; c<= nbc ; c++)
@@ -295,6 +295,10 @@ std::ostream& operator<<(std::ostream &os, const FsAps &fsaps)
 }
 
 // accesseurs
+vector <int> FsAps::getCfc() const
+{
+    return cfc;
+}
 
 vector <int> FsAps::getFs() const
 {

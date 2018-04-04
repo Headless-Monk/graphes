@@ -31,6 +31,7 @@ class FsAps
         // accesseur
         vector <int> getFs() const;
         vector <int> getAps() const;
+        vector <int> getCfc() const ;
 
         int index_getFs(int i) const;
         int index_getAps(int i) const;
