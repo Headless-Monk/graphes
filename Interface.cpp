@@ -1,4 +1,5 @@
 #include "Interface.h"
+#include <cstdlib>
 
 Interface::Interface() : d_graphe_courant{0}, d_type_courant{0}, d_liste_graphes{}
 {
