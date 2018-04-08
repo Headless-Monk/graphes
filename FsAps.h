@@ -15,8 +15,8 @@ class FsAps
         FsAps(vector<int>);
 
         // méthodes
-        vector <int> distance(int, vector <int> ) ;
-        vector <vector<int>> matrice_distance (vector <vector<int>>) ;
+        void distance(int, int*& ) ;
+        void matrice_distance (int **&) ;
         void tarjan() ;
         void graphe_reduit(int *& , int *&) ;
         void traversee( int) ;

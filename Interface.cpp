@@ -40,7 +40,7 @@ void Interface::graphe_pour_tests()
     /*graphe 3, fs aps*/
     d_liste_graphes.push_back(new Conteneur{});
 
-    vector<int> tab = {6,0,1,0,2,3,0} ;
+    vector<int> tab = {9,0,2,0,1,3,0,0} ;
 
     FsAps *fsaps1 = new FsAps{tab};
     d_liste_graphes[2]->fsaps(fsaps1);
@@ -214,8 +214,8 @@ void Interface::menu_matrice(std::ostream &os, std::istream &is)
 
 void Interface::menu_fs_aps(std::ostream &os, std::istream &is)
 {
-    int sommet1=0, sommet2=0;
-    vector <vector<int>> tableau_distance ;
+    int sommet1=0, sommet2=0, test ;
+    int ** tableau_distance ;
     int* fsr_graphe_reduit;
     int* apsr_graphe_reduit;
     vector <int> cfc_tarjan ;
@@ -252,16 +252,26 @@ void Interface::menu_fs_aps(std::ostream &os, std::istream &is)
                 d_liste_graphes[d_graphe_courant]->fs_aps()->supprimer_arc(sommet1 , sommet2);
                 break;
             case 3:
-                d_liste_graphes[d_graphe_courant]->fs_aps()->matrice_distance (tableau_distance);
-                for (int i = 1  ; i <= tableau_distance.size() ; i++)
+
+                d_liste_graphes[d_graphe_courant]->fs_aps()->matrice_distance(tableau_distance);
+
+
+                for (int i = 1  ; i <= tableau_distance[0][0] ; i++)
                 {
-                    cout << "Distance de i vers : "<<endl ;
-                    for (int j = 1  ; j <= tableau_distance[i].size() ; j++)
+                    cout << "Distance de "<<i<<" vers : "<<endl ;
+                    for (int j = 1  ; j <= tableau_distance[0][0] ; j++)
                     {
                         if (i!=j)
-                            cout <<" -> "<< j << " = "<< tableau_distance[i][j] ;
+                            if (tableau_distance[i][j] !=-1)
+                                cout <<" -> "<< j << " = "<< tableau_distance[i][j] <<endl;
+                            else
+                                cout <<" -> "<< j << " n'existe pas " <<endl;
                     }
+                    cout << endl ;
                 }
+
+                os << "Appuiez sur 1 pour continuer";
+                is >> test;
                 break;
             case 4 :
                 d_liste_graphes[d_graphe_courant]->fs_aps()->tarjan() ;

@@ -17,17 +17,19 @@ FsAps::FsAps(vector<int> fs)
         if (d_fs.at(i) == 0 && (i+1)<d_fs.size()) aps.push_back(i+1);
 
     d_aps = aps ;
-    d_aps.insert(d_aps.begin(),d_aps.size()); // longueur aps
+    d_aps.insert(d_aps.begin(),d_aps.size()+1); // longueur aps
 }
 
 // méthodes
 
-vector <int> FsAps::distance(int sommet, vector <int> d )
+void FsAps::distance(int sommet, int *& d)
 {
+
     int n = longueurAps();
+    d= new int [n] ;
     for (int i =0 ; i <= n ; i++) d[i]=-1;
     d[0] = n ;
-    vector <int> fa ;
+    int * fa = new int [n] ;
     int t= 0; int q=1 ;int x ; int p=1 ; int k=0 ;
     fa[1] = sommet ;
     d[sommet] = 0 ;
@@ -49,14 +51,20 @@ vector <int> FsAps::distance(int sommet, vector <int> d )
         t=q;
         q=p;
     }
-    return d ;
+
 }
-vector <vector<int>> FsAps::matrice_distance (vector <vector<int>> dist )
+void FsAps::matrice_distance ( int **& dist)
 {
+
     int n = longueurAps() ;
-    for (int i = 1 ; i <= n ; i++)dist[i]=distance(i, dist[i]);
-    dist [0][0] = n;
-    return dist ;
+    dist =  new int * [n] ;
+    dist[0] = new int [1] ;
+
+    for (int i = 1 ; i <= n ; i++)
+        distance(i, dist[i]);
+
+    dist[0][0] = n-1;
+
 }
 
 void FsAps::tarjan()
