@@ -12,11 +12,9 @@ FsAps::FsAps(vector<int> fs)
     d_fs = fs ;
 
     vector<int>aps ;
-    aps.push_back(0);
-    aps.push_back(d_fs.at(1));
 
     for (unsigned int i = 1 ;i < d_fs.size() ; i++)
-        if (d_fs.at(i) == 0 && (i+1)<d_fs.size()) aps.push_back(d_fs.at(i+1));
+        if (d_fs.at(i) == 0 && (i+1)<d_fs.size()) aps.push_back(i+1);
 
     d_aps = aps ;
     d_aps.insert(d_aps.begin(),d_aps.size()); // longueur aps
@@ -273,15 +271,15 @@ void FsAps::supprimer_arc(int s1, int s2)
 
 void FsAps::afficher(std::ostream &os) const
 {
-    os << "[ " ;
+    os << "Fs : [ " ;
     for (int i =0 ; i<longueurFs() ; i++)
     {
         os << d_fs[i] ;
     }
     os << " ]" << std::endl ;
 
-    os << "[ " ;
-    for (int i =0 ; i<longueurFs() ; i++)
+    os << "Aps : [ " ;
+    for (int i =0 ; i<longueurAps() ; i++)
     {
         os << d_aps[i] ;
     }

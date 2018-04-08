@@ -22,6 +22,7 @@ public:
     //void liste_to_fsaps();
 
     void liste(Liste *li);
+    void fsaps(FsAps *fa) ;
     Liste* liste();
     MatriceAdjacence* matrice();
     FsAps* fs_aps();

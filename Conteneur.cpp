@@ -100,6 +100,11 @@ void Conteneur::liste(Liste *li)
     d_liste = li;
 }
 
+void Conteneur::fsaps(FsAps *fa)
+{
+    d_fs_aps = fa;
+}
+
 Liste* Conteneur::liste()
 {
     return d_liste;

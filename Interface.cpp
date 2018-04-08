@@ -36,6 +36,14 @@ void Interface::graphe_pour_tests()
     l2->ajouter_successeur(4,4);
 
     d_liste_graphes[1]->liste(l2);
+
+    /*graphe 3, fs aps*/
+    d_liste_graphes.push_back(new Conteneur{});
+
+    vector<int> tab = {6,0,1,0,2,3,0} ;
+
+    FsAps *fsaps1 = new FsAps{tab};
+    d_liste_graphes[2]->fsaps(fsaps1);
 }
 
 void Interface::clear_console()
@@ -60,21 +68,27 @@ void Interface::afficher_graphe(std::ostream &os, int numero)
         if(d_liste_graphes[numero]->liste())
             os << *d_liste_graphes[numero]->liste();
         else
-            os << "Pas de graphe disponible" << endl;
+            {
+                os << "Graphe liste indisponible" << endl;
+            }
         break;
     case 1 :
         /*matrice*/
         if(d_liste_graphes[numero]->matrice())
             /*os << *d_liste_graphes[numero]->matrice()*/;
         else
-            os << "Pas de graphe disponible" << endl;
+        {
+                os << "Graphe matrice indisponible" << endl;
+        }
         break;
     case 2 :
         /*fs_aps*/
         if(d_liste_graphes[numero]->fs_aps())
             os << *d_liste_graphes[numero]->fs_aps();
         else
-            os << "Pas de graphe disponible" << endl;
+        {
+                os << "Graphe Fs Aps indisponible" << endl;
+        }
         break;
     default :
         break;
