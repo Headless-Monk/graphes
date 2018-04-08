@@ -6,6 +6,21 @@ Conteneur::Conteneur() :
         d_fs_aps{nullptr}
 {}
 
+Conteneur::Conteneur(MatriceAdjacence* matrice)
+{
+    d_matrice_adjacence = matrice;
+}
+
+Conteneur::Conteneur(FsAps* fsaps)
+{
+    d_fs_aps = fsaps;
+}
+
+Conteneur::Conteneur(Liste* liste)
+{
+    d_liste = liste;
+}
+
 void Conteneur::fsaps_to_adj()
 {
     std::vector<int> tmp_fs = d_fs_aps->getFs();
@@ -20,7 +35,6 @@ void Conteneur::fsaps_to_adj()
     for(int i = 1; i < n; i++)
     {
         int nbs = tmp_aps[i+1] - tmp_aps[i]-1;
-        //manque le resize si jamais, mais flemme de l'implanter...
         d_matrice_adjacence->set_adj(i,0,nbs);
         for(int j = 1; tmp_fs[tmp_aps[i]+j-1] != 0; j++)
         {

@@ -7,6 +7,9 @@ class Conteneur
 {
 public:
     Conteneur();
+    Conteneur(MatriceAdjacence* matrice);
+    Conteneur(FsAps* fsaps);
+    Conteneur(Liste* liste);
     //~Conteneur();
 
     // méthodes de conversion
