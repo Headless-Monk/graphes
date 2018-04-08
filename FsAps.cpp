@@ -250,19 +250,20 @@ void FsAps::ajouter_arc(int s1, int s2)
 }
 void FsAps::supprimer_arc(int s1, int s2)
 {
-    int indice = 1 ;
+    int indice = 0 ;
     int supp = 0 ;
+
     for (int i = 1 ; i <longueurFs() ; i++)
     {
-        if(d_fs[s1]==0)indice++ ;
-        if(s1 == indice && d_fs[s1]==s2)
+        if(d_fs[i]==0)indice++ ;
+        else if(s1 == indice && d_fs[i]==s2)
         {
             supp = indice ;
-            d_fs.erase(d_fs.begin() + s1) ;
+            d_fs.erase(d_fs.begin()+i) ;
+            break ;
         }
-        break ;
     }
-    if(d_aps[supp+1])
+    if(d_aps[supp+1] && supp!=0)
     {
         for (int i = s1+1 ; i <= longueurAps() ; i++)
             d_aps[i]-- ;
