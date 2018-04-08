@@ -71,6 +71,13 @@ void FsAps::tarjan()
 {
     int n = longueurAps() ;
     nbc = 0 ;
+    num = new int [n];
+    mu = new int [n];
+    prem = new int [n];
+    pilch = new int [n];
+    cfc = new int [n];
+    tarj = new int [n];
+    enTarj = new bool [n];
     for (int i =1 ; i<= n ; i++)
     {
         num[i] = 0 ;
@@ -129,6 +136,7 @@ void FsAps::graphe_reduit(int *& fsr, int *& apsr)
     fsr = new int [longueurFs()+1] ;
     bool* deja_mis = new bool [nbc +1] ;
     int k = 0 ;
+
     for (int c= 1 ; c<= nbc ; c++)
     {
         for (int i = 1 ; i<= nbc ; i++)
@@ -139,10 +147,13 @@ void FsAps::graphe_reduit(int *& fsr, int *& apsr)
         int s =prem[c] ;
         apsr[c] = k+1 ;
         int t ;
+
         while (s!= 0)
         {
+
             for (int l = d_aps[s] ; (t=d_fs[l])!=0 ; l++)
             {
+
                 if (!deja_mis[cfc[t]])
                 {
                     k++ ;
@@ -152,13 +163,14 @@ void FsAps::graphe_reduit(int *& fsr, int *& apsr)
             }//for
             s=pilch[s] ;
         }//while
+
         k++ ;
         fsr[k] =0;
     }//for
     fsr[0] = k ;
 }
 
-void FsAps::empiler(int x , vector<int> pilchEmpiler)
+void FsAps::empiler(int x , int *& pilchEmpiler)
 {
     pilchEmpiler [x] = pilchEmpiler[0] ;
     pilchEmpiler[0] = x ;
@@ -214,6 +226,7 @@ void FsAps::dijkstra(int** c, int s, int *& d, int *& pred)
 }//dijkstra
 void FsAps::ordonnancement (int* d , int *& lc , int *& fpc , int *& appc)
 {
+
     int n = longueurAps() ;
     int m = longueurAps() ;
     lc = new int [n+1] ; lc[0]=n ;
@@ -223,14 +236,16 @@ void FsAps::ordonnancement (int* d , int *& lc , int *& fpc , int *& appc)
     fpc[1] = 0 ;
     appc[1] = 1;
     int kc = 1 ;
+
     for (int i = 2 ; i<= n ; i++)
     {
         lc[i] = 0;
         appc[i] = kc + 1 ;
         int j ;
+
         for (int k = d_aps[i] ; (j= fpc[k])!=0 ; k++)
         {
-            int lg = lc[j]+d[j] ;
+            /*int lg = lc[j]+d[j] ;
             if (lg >= lc[i])
             {
                 if(lg>lc[i])
@@ -240,10 +255,11 @@ void FsAps::ordonnancement (int* d , int *& lc , int *& fpc , int *& appc)
                     fpc[kc] = j ;
                 }
                 else fpc[++kc] = j ;
-            }
+            }*/
         } // for
         fpc[++kc] =  0;
     }
+
 }
 
 void FsAps::ajouter_arc(int s1, int s2)
@@ -302,7 +318,7 @@ std::ostream& operator<<(std::ostream &os, const FsAps &fsaps)
 }
 
 // accesseurs
-vector <int> FsAps::getCfc() const
+int * FsAps::getCfc() const
 {
     return cfc;
 }

@@ -20,7 +20,7 @@ class FsAps
         void tarjan() ;
         void graphe_reduit(int *& , int *&) ;
         void traversee( int) ;
-        void empiler(int, vector <int>) ;
+        void empiler(int, int *&) ;
         void dijkstra(int**, int s, int *&, int *&) ;
         void ordonnancement (int* , int *& , int *& , int *& );
 
@@ -31,7 +31,7 @@ class FsAps
         // accesseur
         vector <int> getFs() const;
         vector <int> getAps() const;
-        vector <int> getCfc() const ;
+        int * getCfc() const ;
 
         int index_getFs(int i) const;
         int index_getAps(int i) const;
@@ -52,8 +52,8 @@ class FsAps
     	vector <int> d_fs ;
     	vector <int> d_aps ;
 
-    	vector <int> num, mu, prem, pilch, cfc, tarj ;
-        vector <bool> enTarj ;
+    	int * num, * mu, * prem, * pilch, * cfc, * tarj ;
+        bool * enTarj ;
         int nbc ;
 };
 

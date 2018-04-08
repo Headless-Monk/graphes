@@ -216,12 +216,13 @@ void Interface::menu_fs_aps(std::ostream &os, std::istream &is)
 {
     int sommet1=0, sommet2=0, test ;
     int ** tableau_distance ;
-    int* fsr_graphe_reduit;
-    int* apsr_graphe_reduit;
+    int* fsr_graphe_reduit, * apsr_graphe_reduit,*lc_ordo, *fpc_ordo,* appc_ordo;
+    int *d = new int[3];
+    d[0]=1;d[1]=2 ;d[2]=3 ;
     vector <int> cfc_tarjan ;
 
     int choix = 0;
-    while(choix != 5)
+    while(choix != 7)
     {
         clear_console();
 
@@ -231,7 +232,9 @@ void Interface::menu_fs_aps(std::ostream &os, std::istream &is)
         os << "(2) Supprimer arc" << endl;
         os << "(3) Calcul des distances" << endl;
         os << "(4) Composantes fortement connexes selon Tarjan" << endl;
-        os << "(5) Retour" << endl << endl;
+        os << "(5) Ordonnancement" << endl;
+        os << "(6) Dijkstra" << endl;
+        os << "(7) Retour" << endl << endl;
 
         is >> choix;
 
@@ -276,12 +279,27 @@ void Interface::menu_fs_aps(std::ostream &os, std::istream &is)
             case 4 :
                 d_liste_graphes[d_graphe_courant]->fs_aps()->tarjan() ;
                 d_liste_graphes[d_graphe_courant]->fs_aps()->graphe_reduit(fsr_graphe_reduit , apsr_graphe_reduit ) ;
+
+                /*
                 cfc_tarjan = d_liste_graphes[d_graphe_courant]->fs_aps()->getCfc() ;
                 cout << "Il y a "<< sizeof(apsr_graphe_reduit)-1 << "composantes fortements connexes" <<endl ;
                 for (int i = 1 ; i <= sizeof(cfc_tarjan) ; i++)
                 {
                     cout << "Sommet "<< i << " dans la composante : "<< cfc_tarjan[i] ;
                 }
+                */
+                os << "Appuiez sur 1 pour continuer";
+                is >> test;
+                break ;
+            case 5 :
+                d_liste_graphes[d_graphe_courant]->fs_aps()->ordonnancement (d,lc_ordo, fpc_ordo, appc_ordo);
+
+
+                os << "Appuiez sur 1 pour continuer";
+                is >> test;
+                break ;
+            case 6 :
+
                 break ;
             default:
                 break;
