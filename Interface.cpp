@@ -50,6 +50,8 @@ void Interface::clear_console()
 {
     #ifdef _WIN32
         system("cls");
+    #elif __APPLE__
+        system("cls");
     #else
         system("clear");
     #endif
@@ -306,4 +308,3 @@ void Interface::menu_fs_aps(std::ostream &os, std::istream &is)
         }
     }
 }
-
