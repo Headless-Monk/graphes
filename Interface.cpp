@@ -40,7 +40,7 @@ void Interface::graphe_pour_tests()
     /*graphe 3, fs aps*/
     d_liste_graphes.push_back(new Conteneur{});
 
-    vector<int> tab = {9,0,2,0,1,3,0,0} ;
+    vector<int> tab = {12,0,2,3,0,4,0,5,0,5,0,0} ;
 
     FsAps *fsaps1 = new FsAps{tab};
     d_liste_graphes[2]->fsaps(fsaps1);
@@ -216,11 +216,11 @@ void Interface::menu_matrice(std::ostream &os, std::istream &is)
 
 void Interface::menu_fs_aps(std::ostream &os, std::istream &is)
 {
-    int sommet1=0, sommet2=0, test ;
+    int sommet1=0, sommet2=0, test , maxi;
     int ** tableau_distance ;
     int* fsr_graphe_reduit, * apsr_graphe_reduit,*lc_ordo, *fpc_ordo,* appc_ordo;
-    int *d = new int[3];
-    d[0]=1;d[1]=2 ;d[2]=3 ;
+    int *d_ordo = new int[6];
+    d_ordo[0]=0;d_ordo[1]=2 ;d_ordo[2]=3 ;d_ordo[3]=1;d_ordo[4]=2 ;d_ordo[5]=3 ;
     vector <int> cfc_tarjan ;
 
     int choix = 0;
@@ -280,22 +280,18 @@ void Interface::menu_fs_aps(std::ostream &os, std::istream &is)
                 break;
             case 4 :
                 d_liste_graphes[d_graphe_courant]->fs_aps()->tarjan() ;
-                d_liste_graphes[d_graphe_courant]->fs_aps()->graphe_reduit(fsr_graphe_reduit , apsr_graphe_reduit ) ;
-
-                /*
-                cfc_tarjan = d_liste_graphes[d_graphe_courant]->fs_aps()->getCfc() ;
-                cout << "Il y a "<< sizeof(apsr_graphe_reduit)-1 << "composantes fortements connexes" <<endl ;
-                for (int i = 1 ; i <= sizeof(cfc_tarjan) ; i++)
-                {
-                    cout << "Sommet "<< i << " dans la composante : "<< cfc_tarjan[i] ;
-                }
-                */
                 os << "Appuiez sur 1 pour continuer";
                 is >> test;
                 break ;
             case 5 :
-                d_liste_graphes[d_graphe_courant]->fs_aps()->ordonnancement (d,lc_ordo, fpc_ordo, appc_ordo);
-
+                d_liste_graphes[d_graphe_courant]->fs_aps()->ordonnancement (d_ordo,lc_ordo, fpc_ordo, appc_ordo);
+                maxi =0 ;
+                for (int i = 1 ; i <lc_ordo[0] ; i++)
+                {
+                    if(maxi <lc_ordo[i])maxi = lc_ordo[i] ;
+                    cout << "Tâche "<<i<<" = "<<d_ordo[i]<<" jours"<<endl ;
+                }
+                cout << "La durée du projet est de "<<maxi<<" jours"<<endl;
 
                 os << "Appuiez sur 1 pour continuer";
                 is >> test;

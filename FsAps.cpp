@@ -85,10 +85,19 @@ void FsAps::tarjan()
     }
     pilch[0] = 0 ;
     tarj[0] = 0 ;
+
     for (int s= 1 ; s<= n ;s++)
-        if(num[s] == 0)
+    {    if(num[s] == 0)
             traversee(s);
+
+
+    }
     prem[0]= nbc ;
+
+    int nbrCFC = 0 ;
+    for (int i =1 ; i < nbc ; i++)
+        if (prem[i]!=prem[i-1])nbrCFC++ ;
+    cout << "Il y a "<<nbrCFC<< " composantes fortement connexes"<<endl;
 }
 
 
@@ -126,6 +135,7 @@ void FsAps::traversee(int s)
             x = tarj[x] ;
         }
     }
+
 }
 
 void FsAps::graphe_reduit(int *& fsr, int *& apsr)
@@ -228,7 +238,7 @@ void FsAps::ordonnancement (int* d , int *& lc , int *& fpc , int *& appc)
 {
 
     int n = longueurAps() ;
-    int m = longueurAps() ;
+    int m = longueurFs() ;
     lc = new int [n+1] ; lc[0]=n ;
     appc = new int [n+1] ; appc[0] = n ;
     fpc = new int [m+1] ; fpc[0] = m ;
@@ -243,9 +253,10 @@ void FsAps::ordonnancement (int* d , int *& lc , int *& fpc , int *& appc)
         appc[i] = kc + 1 ;
         int j ;
 
-        for (int k = d_aps[i] ; (j= fpc[k])!=0 ; k++)
+        for (int k = d_aps[i] ; (j= d_fs[k])!=0 ; k++)
         {
-            /*int lg = lc[j]+d[j] ;
+
+            int lg = lc[j]+d[j] ;
             if (lg >= lc[i])
             {
                 if(lg>lc[i])
@@ -255,7 +266,8 @@ void FsAps::ordonnancement (int* d , int *& lc , int *& fpc , int *& appc)
                     fpc[kc] = j ;
                 }
                 else fpc[++kc] = j ;
-            }*/
+            }
+
         } // for
         fpc[++kc] =  0;
     }
@@ -299,14 +311,20 @@ void FsAps::afficher(std::ostream &os) const
     os << "Fs : [ " ;
     for (int i =0 ; i<longueurFs() ; i++)
     {
-        os << d_fs[i] ;
+        if (i==longueurFs()-1)
+            os << d_fs[i] ;
+        else
+            os << d_fs[i]<<", " ;
     }
     os << " ]" << std::endl ;
 
     os << "Aps : [ " ;
     for (int i =0 ; i<longueurAps() ; i++)
     {
-        os << d_aps[i] ;
+        if (i==longueurAps()-1)
+            os << d_aps[i];
+        else
+            os << d_aps[i]<<", " ;
     }
     os << " ]" << std::endl ;
 }
