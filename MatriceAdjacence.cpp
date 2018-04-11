@@ -45,8 +45,7 @@ void MatriceAdjacence::redimmension()
 {
     d_nbsommets++;
     int nouvelle_taille = d_nbsommets;
-    
-    
+        
     // redimensionne la matrice d'adjacence
     d_adj.resize(nouvelle_taille);
     for (int i = 0; i < nouvelle_taille; i++) {
@@ -58,12 +57,12 @@ void MatriceAdjacence::ajouterArc(int i , int j)
 {
     if (i>0 && j>0 && i<=nombreSommets() && j<=nombreSommets())
         d_adj[i-1][j-1] = 1;
-    else if (i>=nombreSommets() || j>=nombreSommets())
+    else if (i>nombreSommets() || j>nombreSommets())
     {
         do{
             redimmension();
         }
-        while(i>=nombreSommets() || j>=nombreSommets());
+        while(i>nombreSommets() || j>nombreSommets());
         
         d_adj[i-1][j-1] = 1;
     }
