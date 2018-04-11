@@ -45,7 +45,7 @@ void MatriceAdjacence::afficher(std::ostream& ost) const
     ost << std::endl << "  ";
     for (int entete = 0; entete < d_adj.size(); entete++)
     {
-        ost << "-";
+        ost << "|";
     }
     
     ost << std::endl;
