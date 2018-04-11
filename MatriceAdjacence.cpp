@@ -36,8 +36,22 @@ std::vector<int> MatriceAdjacence::getTabPrufer() const
 
 void MatriceAdjacence::afficher(std::ostream& ost) const
 {
+    ost << "  ";
+    for (int entete = 0; entete < d_adj.size(); entete++)
+    {
+        ost << entete+1;
+    }
+    
+    ost << std::endl << "  ";
+    for (int entete = 0; entete < d_adj.size(); entete++)
+    {
+        ost << "-";
+    }
+    
+    ost << std::endl;
     for (int ligne = 0; ligne < d_adj.size(); ligne++)
     {
+        ost << ligne+1 << "|";
         for (int colonne = 0; colonne < d_adj.size(); colonne++)
         {
             ost << d_adj[ligne][colonne];
