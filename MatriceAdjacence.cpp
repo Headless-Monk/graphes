@@ -1,7 +1,7 @@
 #include "MatriceAdjacence.h"
 #include <vector>
 
-MatriceAdjacence::MatriceAdjacence() : d_adj(0, std::vector<int>(0)), d_nbsommets(0)
+MatriceAdjacence::MatriceAdjacence() : d_adj(0, std::vector<int>(0)), d_nbsommets(0), d_tabPrufer(0)
 {}
 
 MatriceAdjacence::MatriceAdjacence(std::vector<std::vector<int>> adj, int nbsommets) : d_adj(adj), d_nbsommets(nbsommets)
@@ -26,6 +26,11 @@ std::vector<std::vector<int> > MatriceAdjacence::get_adj() const
 int MatriceAdjacence::nombreSommets() const
 {
     return d_nbsommets;
+}
+
+std::vector<int> MatriceAdjacence::getTabPrufer() const
+{
+    return d_tabPrufer;
 }
 
 
@@ -75,3 +80,75 @@ void MatriceAdjacence::supprimerArc(int i , int j)
         d_adj[i-1][j-1] = 0;
     }
 }
+
+int MatriceAdjacence::plusPetiteFeuille(std::vector<std::vector<int>> adj, std::vector<bool> estPresent) const{
+    
+    std::vector<bool> isFeuille(nombreSommets(), false);
+    
+    int sommet = INT_MAX;
+    for (int i = 0; i < nombreSommets(); i++)
+    {
+        int feuille = 0;
+        for (int j = 0; j < nombreSommets(); j++)
+        {
+            if(adj[i][j] == 1){
+                feuille++;
+                if(sommet>j)
+                    sommet = j;
+            }
+            
+            if(adj[j][i] == 1){
+                feuille++;
+            }
+        }
+        
+        if(feuille<2)
+        {
+            isFeuille[i] = true;
+        }
+    }
+    
+    for(int k = 0; k < isFeuille.size() ; k++)
+    {
+        if(isFeuille[k] && estPresent[k])
+            return k;
+    }
+    
+    return -1;
+}
+
+std::vector<int> MatriceAdjacence::codagePrufer()
+{
+    
+    std::vector<std::vector<int>> tamp_adj = d_adj;
+    std::vector<bool> estPresent(nombreSommets(), true);
+    
+    int pptFeuille = 0;
+        
+    for (int k = 0; k < nombreSommets()-2; k++) {
+        
+        pptFeuille = plusPetiteFeuille(tamp_adj, estPresent);
+        
+        if(pptFeuille != -1){
+            
+            for (int i = 0; i < nombreSommets(); i++) {
+            
+                if(tamp_adj[pptFeuille][i] == 1 || tamp_adj[i][pptFeuille] == 1)
+                {
+                    d_tabPrufer.push_back(i+1);
+                    tamp_adj[pptFeuille][i] = 0;
+                    tamp_adj[i][pptFeuille] = 0;
+                    estPresent[pptFeuille] = false;
+                }
+            }
+        }
+        else{
+            std::cout << "Erreur : il n'y a plus de feuille dans l'arbre" << std::endl;
+        }
+    }
+    
+    return d_tabPrufer;
+}
+
+
+
