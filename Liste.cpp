@@ -33,6 +33,13 @@ void Liste::afficher(std::ostream &os) const
 {
     ListePrincipale *liste = d_racine;
 
+    std::string oriente;
+    if(d_oriente)
+        oriente = "oriente";
+    else
+        oriente = "non oriente";
+
+    os << "Graphe " << oriente << " :" << std::endl;
     while(liste)
     {
         os << *liste << std::endl;
