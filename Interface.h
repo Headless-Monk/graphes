@@ -24,6 +24,10 @@ class Interface
         void menu_matrice(std::ostream &os, std::istream &is);
         void menu_fs_aps(std::ostream &os, std::istream &is);
 
+        void menu_creer_graphe(std::ostream &os, std::istream &is);
+        void menu_modifier_graphe(std::ostream &os, std::istream &is);
+        void menu_supprimer_graphe(std::ostream &os, std::istream &is);
+
     private:
         int d_graphe_courant;
         int d_type_courant; /* 0:liste ; 1:matrice ; 2:fs_aps*/

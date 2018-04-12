@@ -104,7 +104,7 @@ void Interface::menu_principal(std::ostream &os, std::istream &is)
     int graphe = 0;
     int type = 0;
     int choix = 0;
-    while(choix != 4)
+    while(choix != 5)
     {
         clear_console();
 
@@ -112,8 +112,9 @@ void Interface::menu_principal(std::ostream &os, std::istream &is)
 
         os << "(1) Changer de graphe courant" << endl;
         os << "(2) Changer le mode d'affichage du graphe" << endl;
-        os << "(3) Actions sur le graphe" << endl;
-        os << "(4) Quitter" << endl << endl;
+        os << "(3) Actions sur le graphe courant" << endl;
+        os << "(4) Action sur les graphes" << endl;
+        os << "(5) Quitter" << endl << endl;
 
 
         is >> choix;
@@ -152,6 +153,26 @@ void Interface::menu_principal(std::ostream &os, std::istream &is)
                     menu_matrice(os, is);
                 if(d_type_courant == 2)
                     menu_fs_aps(os, is);
+                break;
+
+            case 4:
+                os << "(1) Ajouter un graphe" << endl;
+                os << "(2) Modifier un graphe" << endl;
+                os << "(3) Supprimer un graphe" << endl;
+                os << "(4) Retour" << endl;
+                is >> choix;
+                switch (choix)
+                {
+                    case 1:
+                        menu_creer_graphe();
+                    break;
+                    case 2:
+                        menu_modifier_graphe();
+                    break;
+                    case 3:
+                        menu_supprimer_graphe();
+                    break;
+                }
                 break;
             default:
                 break;
@@ -304,3 +325,22 @@ void Interface::menu_fs_aps(std::ostream &os, std::istream &is)
         }
     }
 }
+
+void Interface::menu_creer_graphe(std::ostream &os, std::istream &is)
+{
+    os << "(1) Graphe oriente" << endl;
+    os << "(2) Graphe non oriente" << endl;
+}
+
+void Interface::menu_modifier_graphe(std::ostream &os, std::istream &is)
+{
+
+}
+
+void Interface::menu_supprimer_graphe(std::ostream &os, std::istream &is)
+{
+
+}
+
+
+
