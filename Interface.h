@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <ostream>
+#include <stdint.h>
 
 #include "Conteneur.h"
 

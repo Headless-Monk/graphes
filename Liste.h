@@ -25,11 +25,11 @@ class Liste
         /*surcharges opérateur*/
         friend std::ostream& operator<<(std::ostream& os, const Liste &liste);
 
-    private:
+
         void supprimer_arcs_vers(int numero_sommet);
         void supprimer_arcs_de(int numero_sommet);
         bool indice_valide(int position);
-
+    private:
         ListePrincipale *d_racine;
         int d_nombre_sommets;
 };

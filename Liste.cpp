@@ -76,8 +76,6 @@ void Liste::supprimer_sommet(int numero_sommet)
 {
     if(indice_valide(numero_sommet))
     {
-        d_nombre_sommets--;
-
         //suppression des arcs
         supprimer_arcs_vers(numero_sommet);
         supprimer_arcs_de(numero_sommet);
@@ -102,23 +100,28 @@ void Liste::supprimer_sommet(int numero_sommet)
         }
 
         delete sommet_courant;
+        d_nombre_sommets--;
 
         //mise à jour des cles sommets
-        if(d_racine->cle_sommet() != 1)
+        if(d_nombre_sommets > 0)
         {
-            d_racine->cle_sommet(1);
-            sommet_courant = d_racine->sommet_suivant();
-        }
-        else
-        {
-            sommet_courant = precedent->sommet_suivant();
-        }
+            if(d_racine->cle_sommet() != 1)
+            {
+                d_racine->cle_sommet(1);
+                sommet_courant = d_racine->sommet_suivant();
+                precedent = d_racine;
+            }
+            else
+            {
+                sommet_courant = precedent->sommet_suivant();
+            }
 
-        while(sommet_courant)
-        {
-            sommet_courant->cle_sommet(precedent->cle_sommet()+1);
-            precedent = sommet_courant;
-            sommet_courant = sommet_courant->sommet_suivant();
+            while(sommet_courant)
+            {
+                sommet_courant->cle_sommet(precedent->cle_sommet()+1);
+                precedent = sommet_courant;
+                sommet_courant = sommet_courant->sommet_suivant();
+            }
         }
     }
 }
@@ -151,7 +154,6 @@ ListePrincipale* Liste::sommet_position(int position)
 
         return sommet;
     }
-
     return nullptr;
 }
 
