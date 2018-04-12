@@ -170,13 +170,13 @@ void Interface::menu_principal(std::ostream &os, std::istream &is)
                 switch (choix)
                 {
                     case 1:
-                        menu_creer_graphe();
+                        menu_creer_graphe(os, is);
                     break;
                     case 2:
-                        menu_modifier_graphe();
+                        menu_modifier_graphe(os, is);
                     break;
                     case 3:
-                        menu_supprimer_graphe();
+                        menu_supprimer_graphe(os, is);
                     break;
                 }
                 break;
