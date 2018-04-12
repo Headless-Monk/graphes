@@ -8,10 +8,10 @@ Interface::Interface() : d_graphe_courant{0}, d_type_courant{0}, d_liste_graphes
 
 void Interface::graphe_pour_tests()
 {
-    /*graphe 1*/
+    /*graphe 1, liste*/
     d_liste_graphes.push_back(new Conteneur{});
 
-    Liste *l1 = new Liste{4};
+    Liste *l1 = new Liste{4, 0};
 
     l1->ajouter_successeur(1,1);
     l1->ajouter_successeur(1,2);
@@ -20,13 +20,19 @@ void Interface::graphe_pour_tests()
     l1->ajouter_successeur(3,2);
     l1->ajouter_successeur(4,1);
 
+    l1->ajouter_successeur(2,1);
+    l1->ajouter_successeur(3,2);
+    l1->ajouter_successeur(4,2);
+    l1->ajouter_successeur(2,3);
+    l1->ajouter_successeur(1,4);
+
     d_liste_graphes[0]->liste(l1);
     d_graphe_courant = 0;
 
-    /*graphe 2*/
+    /*graphe 2, liste*/
     d_liste_graphes.push_back(new Conteneur{});
 
-    Liste *l2 = new Liste{4};
+    Liste *l2 = new Liste{4, 1};
 
     l2->ajouter_successeur(2,1);
     l2->ajouter_successeur(3,2);
@@ -211,6 +217,9 @@ void Interface::menu_liste(std::ostream &os, std::istream &is)
                 os << "Saisir le numero du sommet d'arrivee : ";
                 is >> sommet2;
                 d_liste_graphes[d_graphe_courant]->liste()->ajouter_successeur(sommet1, sommet2);
+                if(!d_liste_graphes[d_graphe_courant]->liste()->oriente())
+                    if(sommet1 != sommet2)
+                        d_liste_graphes[d_graphe_courant]->liste()->ajouter_successeur(sommet2, sommet1);
                 break;
             case 3:
                 os << "Saisir le numero du sommet a supprimer : ";
@@ -239,7 +248,8 @@ void Interface::menu_fs_aps(std::ostream &os, std::istream &is)
 {
     int sommet1=0, sommet2=0, test , maxi;
     int ** tableau_distance ;
-    int* fsr_graphe_reduit, * apsr_graphe_reduit,*lc_ordo, *fpc_ordo,* appc_ordo;
+    //int* fsr_graphe_reduit, * apsr_graphe_reduit; //unused
+    int *lc_ordo, *fpc_ordo,* appc_ordo;
     int *d_ordo = new int[6];
     d_ordo[0]=0;d_ordo[1]=2 ;d_ordo[2]=3 ;d_ordo[3]=1;d_ordo[4]=2 ;d_ordo[5]=3 ;
     vector <int> cfc_tarjan ;
@@ -288,10 +298,12 @@ void Interface::menu_fs_aps(std::ostream &os, std::istream &is)
                     for (int j = 1  ; j <= tableau_distance[0][0] ; j++)
                     {
                         if (i!=j)
+                        {
                             if (tableau_distance[i][j] !=-1)
                                 cout <<" -> "<< j << " = "<< tableau_distance[i][j] <<endl;
                             else
                                 cout <<" -> "<< j << " n'existe pas " <<endl;
+                        }
                     }
                     cout << endl ;
                 }

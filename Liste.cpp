@@ -3,7 +3,10 @@
 Liste::Liste() : d_racine{nullptr}, d_nombre_sommets{0}
 {}
 
-Liste::Liste(int nombre_sommet) : d_racine{nullptr}, d_nombre_sommets{0}
+Liste::Liste(int nombre_sommet, bool oriente) :
+    d_racine{nullptr},
+    d_nombre_sommets{0},
+    d_oriente{oriente}
 {
     for(int i=0; i<nombre_sommet; i++)
     {
@@ -30,6 +33,13 @@ void Liste::afficher(std::ostream &os) const
 {
     ListePrincipale *liste = d_racine;
 
+    std::string oriente;
+    if(d_oriente)
+        oriente = "oriente";
+    else
+        oriente = "non oriente";
+
+    os << "Graphe " << oriente << " :" << std::endl;
     while(liste)
     {
         os << *liste << std::endl;
@@ -65,10 +75,13 @@ void Liste::ajouter_successeur(int numero_sommet, int numero_sommet_successeur)
 {
     if(indice_valide(numero_sommet) && indice_valide(numero_sommet_successeur))
     {
-        ListePrincipale *sommet = sommet_position(numero_sommet);
-        ListePrincipale *sommet_successeur = sommet_position(numero_sommet_successeur);
+        if(!arc_existant(numero_sommet, numero_sommet_successeur))
+        {
+            ListePrincipale *sommet = sommet_position(numero_sommet);
+            ListePrincipale *sommet_successeur = sommet_position(numero_sommet_successeur);
 
-        sommet->ajouter_successeur(sommet_successeur);
+            sommet->ajouter_successeur(sommet_successeur);
+        }
     }
 }
 
@@ -76,8 +89,6 @@ void Liste::supprimer_sommet(int numero_sommet)
 {
     if(indice_valide(numero_sommet))
     {
-        d_nombre_sommets--;
-
         //suppression des arcs
         supprimer_arcs_vers(numero_sommet);
         supprimer_arcs_de(numero_sommet);
@@ -102,23 +113,28 @@ void Liste::supprimer_sommet(int numero_sommet)
         }
 
         delete sommet_courant;
+        d_nombre_sommets--;
 
         //mise à jour des cles sommets
-        if(d_racine->cle_sommet() != 1)
+        if(d_nombre_sommets > 0)
         {
-            d_racine->cle_sommet(1);
-            sommet_courant = d_racine->sommet_suivant();
-        }
-        else
-        {
-            sommet_courant = precedent->sommet_suivant();
-        }
+            if(d_racine->cle_sommet() != 1)
+            {
+                d_racine->cle_sommet(1);
+                sommet_courant = d_racine->sommet_suivant();
+                precedent = d_racine;
+            }
+            else
+            {
+                sommet_courant = precedent->sommet_suivant();
+            }
 
-        while(sommet_courant)
-        {
-            sommet_courant->cle_sommet(precedent->cle_sommet()+1);
-            precedent = sommet_courant;
-            sommet_courant = sommet_courant->sommet_suivant();
+            while(sommet_courant)
+            {
+                sommet_courant->cle_sommet(precedent->cle_sommet()+1);
+                precedent = sommet_courant;
+                sommet_courant = sommet_courant->sommet_suivant();
+            }
         }
     }
 }
@@ -151,8 +167,12 @@ ListePrincipale* Liste::sommet_position(int position)
 
         return sommet;
     }
-
     return nullptr;
+}
+
+bool Liste::oriente()
+{
+    return d_oriente;
 }
 
 /*surcharges operateur*/
@@ -189,4 +209,17 @@ void Liste::supprimer_arcs_de(int numero_sommet)
 bool Liste::indice_valide(int position)
 {
     return ((position >= 1) && (position <= d_nombre_sommets))?true:false;
+}
+
+bool Liste::arc_existant(int numero_sommet, int numero_sommet_successeur)
+{
+    if(indice_valide(numero_sommet) && indice_valide(numero_sommet_successeur))
+    {
+        ListePrincipale *sommet = sommet_position(numero_sommet);
+        ListePrincipale *sommet_successeur = sommet_position(numero_sommet_successeur);
+
+        return sommet->possede_successeur(sommet_successeur);
+    }
+
+    return false;
 }

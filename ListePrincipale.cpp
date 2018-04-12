@@ -137,3 +137,16 @@ void ListePrincipale::supprimer_arcs()
 
     d_successeur_suivant = nullptr;
 }
+
+bool ListePrincipale::possede_successeur(ListePrincipale *successeur)
+{
+    ListeSecondaire *sommet_courant = d_successeur_suivant;
+
+    while(sommet_courant)
+    {
+        if(sommet_courant->sommet_pointe() == successeur)
+            return true;
+        sommet_courant = sommet_courant->successeur_suivant();
+    }
+    return false;
+}

@@ -40,6 +40,8 @@ class ListePrincipale
         void supprimer_arc_vers(ListePrincipale *sommet);
         void supprimer_arcs();
 
+        bool possede_successeur(ListePrincipale *successeur);
+
 
         int d_cle_sommet;
         Sommet d_sommet;
