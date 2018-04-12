@@ -11,7 +11,7 @@ void Interface::graphe_pour_tests()
     /*graphe 1, liste*/
     d_liste_graphes.push_back(new Conteneur{});
 
-    Liste *l1 = new Liste{4};
+    Liste *l1 = new Liste{4, 0};
 
     l1->ajouter_successeur(1,1);
     l1->ajouter_successeur(1,2);
@@ -20,13 +20,19 @@ void Interface::graphe_pour_tests()
     l1->ajouter_successeur(3,2);
     l1->ajouter_successeur(4,1);
 
+    l1->ajouter_successeur(2,1);
+    l1->ajouter_successeur(3,2);
+    l1->ajouter_successeur(4,2);
+    l1->ajouter_successeur(2,3);
+    l1->ajouter_successeur(1,4);
+
     d_liste_graphes[0]->liste(l1);
     d_graphe_courant = 0;
 
     /*graphe 2, liste*/
     d_liste_graphes.push_back(new Conteneur{});
 
-    Liste *l2 = new Liste{4};
+    Liste *l2 = new Liste{4, 1};
 
     l2->ajouter_successeur(2,1);
     l2->ajouter_successeur(3,2);
@@ -190,6 +196,9 @@ void Interface::menu_liste(std::ostream &os, std::istream &is)
                 os << "Saisir le numero du sommet d'arrivee : ";
                 is >> sommet2;
                 d_liste_graphes[d_graphe_courant]->liste()->ajouter_successeur(sommet1, sommet2);
+                if(!d_liste_graphes[d_graphe_courant]->liste()->oriente())
+                    if(sommet1 != sommet2)
+                        d_liste_graphes[d_graphe_courant]->liste()->ajouter_successeur(sommet2, sommet1);
                 break;
             case 3:
                 os << "Saisir le numero du sommet a supprimer : ";

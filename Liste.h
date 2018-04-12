@@ -8,7 +8,7 @@ class Liste
 {
     public:
         Liste();
-        Liste(int nombre_sommet);
+        Liste(int nombre_sommet, bool oriente);
         Liste(ListePrincipale *racine);
         ~Liste();
 
@@ -21,17 +21,20 @@ class Liste
 
         /*GET*/
         ListePrincipale* sommet_position(int position);
+        bool oriente();
 
         /*surcharges opérateur*/
         friend std::ostream& operator<<(std::ostream& os, const Liste &liste);
 
-
+    private:
         void supprimer_arcs_vers(int numero_sommet);
         void supprimer_arcs_de(int numero_sommet);
         bool indice_valide(int position);
-    private:
+        bool arc_existant(int numero_sommet, int numero_sommet_successeur);
+
         ListePrincipale *d_racine;
         int d_nombre_sommets;
+        bool d_oriente;
 };
 
 
