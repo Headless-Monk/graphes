@@ -20,7 +20,6 @@ class Interface
         void afficher_graphe(std::ostream &os, int numero);
         void menu_principal(std::ostream &os, std::istream &is);
 
-
         void menu_liste(std::ostream &os, std::istream &is);
         void menu_matrice(std::ostream &os, std::istream &is);
         void menu_fs_aps(std::ostream &os, std::istream &is);

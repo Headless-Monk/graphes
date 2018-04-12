@@ -56,8 +56,6 @@ void Interface::clear_console()
 {
     #ifdef _WIN32
         system("cls");
-    #elif __APPLE__
-        system("cls");
     #else
         system("clear");
     #endif
@@ -162,11 +160,15 @@ void Interface::menu_principal(std::ostream &os, std::istream &is)
                 break;
 
             case 4:
+                clear_console();
+                afficher_graphe(os, d_graphe_courant);
+
                 os << "(1) Ajouter un graphe" << endl;
                 os << "(2) Modifier un graphe" << endl;
                 os << "(3) Supprimer un graphe" << endl;
                 os << "(4) Retour" << endl;
                 is >> choix;
+                clear_console();
                 switch (choix)
                 {
                     case 1:
@@ -340,17 +342,57 @@ void Interface::menu_fs_aps(std::ostream &os, std::istream &is)
 
 void Interface::menu_creer_graphe(std::ostream &os, std::istream &is)
 {
-    os << "(1) Graphe oriente" << endl;
-    os << "(2) Graphe non oriente" << endl;
+    int oriente;
+    int nbr_sommet;
+
+    clear_console();
+    afficher_graphe(os, d_graphe_courant);
+
+    os << "0 : Graphe non oriente" << endl;
+    os << "1 : Graphe oriente" << endl;
+
+    is >> oriente;
+
+    os << "Quel est le nombre de sommets ?" << endl;
+    is >> nbr_sommet;
+
+    d_liste_graphes.push_back(new Conteneur{new Liste{nbr_sommet, oriente}});
 }
 
 void Interface::menu_modifier_graphe(std::ostream &os, std::istream &is)
 {
-
+    os << "Fonction en construction (ou pas... personne ne le sait...)" << endl;
+    system("pause");
 }
 
 void Interface::menu_supprimer_graphe(std::ostream &os, std::istream &is)
 {
+    int choix;
+
+    clear_console();
+
+    for(int i = 0; i < d_liste_graphes.size(); i++)
+    {
+        os << i << " ------------------------" << endl;
+        afficher_graphe(os, i);
+    }
+
+    os << "Numero du graphe à supprimer : ";
+    is >> choix;
+
+    if(d_liste_graphes.size() == 1)
+    {
+        d_liste_graphes.pop_back();
+        d_liste_graphes.resize(0);
+    }
+    else
+    {
+        for(int i = choix; i < d_liste_graphes.size(); i++)
+        {
+            d_liste_graphes[i] = d_liste_graphes[i+1];
+        }
+        d_liste_graphes.resize(d_liste_graphes.size()-1);
+    }
 
 }
 
