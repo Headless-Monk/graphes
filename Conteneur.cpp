@@ -66,8 +66,6 @@ void Conteneur::fsaps_to_adj()
             j++;
         }
     }
-
-    d_matrice_adjacence->afficher(std::cout);
 }
 
 void Conteneur::adj_to_fsasps()
