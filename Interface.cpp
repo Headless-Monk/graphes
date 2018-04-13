@@ -29,19 +29,22 @@ void Interface::graphe_pour_tests()
     d_liste_graphes[0]->liste(l1);
     d_graphe_courant = 0;
 
-    /*graphe 2, liste*/
+    /*graphe 2, matrice*/
     d_liste_graphes.push_back(new Conteneur{});
 
-    Liste *l2 = new Liste{4, 1};
+    MatriceAdjacence* mat = new MatriceAdjacence{};
+    mat->ajouterArc(1, 2);
+    mat->ajouterArc(1, 3);
+    mat->ajouterArc(1, 4);
+    mat->ajouterArc(1, 5);
+    mat->ajouterArc(1, 4);
+    mat->ajouterArc(1, 5);
+    mat->ajouterArc(1, 6);
+    mat->ajouterArc(1, 7);
+    mat->ajouterArc(1, 8);
 
-    l2->ajouter_successeur(2,1);
-    l2->ajouter_successeur(3,2);
-    l2->ajouter_successeur(3,4);
-    l2->ajouter_successeur(4,1);
-    l2->ajouter_successeur(4,2);
-    l2->ajouter_successeur(4,4);
-
-    d_liste_graphes[1]->liste(l2);
+    
+    d_liste_graphes[1]->matrice(mat);
 
     /*graphe 3, fs aps*/
     d_liste_graphes.push_back(new Conteneur{});
@@ -81,7 +84,7 @@ void Interface::afficher_graphe(std::ostream &os, int numero)
     case 1 :
         /*matrice*/
         if(d_liste_graphes[numero]->matrice())
-            /*os << *d_liste_graphes[numero]->matrice()*/;
+            d_liste_graphes[numero]->matrice()->afficher(os);
         else
         {
                 os << "Graphe matrice indisponible" << endl;
@@ -243,7 +246,58 @@ void Interface::menu_liste(std::ostream &os, std::istream &is)
 
 void Interface::menu_matrice(std::ostream &os, std::istream &is)
 {
-    /*reprendre menu_liste*/
+    int sommet1=0, sommet2=0;
+    int test;
+    std::vector<int> prufer;
+    int choix = 0;
+    while(choix != 4)
+    {
+        clear_console();
+        
+        afficher_graphe(os);
+        
+        os << "(1) Ajouter arc" << endl;
+        os << "(2) Supprimer arc" << endl;
+        os << "(3) Codage de Prufer" << endl;
+        os << "(4) Retour" << endl << endl;
+        
+        is >> choix;
+        
+        switch (choix)
+        {
+            case 1:
+                os << "Saisir le numero du sommet de depart : ";
+                is >> sommet1;
+                os << "Saisir le numero du sommet d'arrivee : ";
+                is >> sommet2;
+
+                d_liste_graphes[d_graphe_courant]->matrice()->ajouterArc(sommet1, sommet2);
+                break;
+            case 2:
+                os << "Saisir le numero du sommet de depart : ";
+                is >> sommet1;
+                os << "Saisir le numero du sommet d'arrivee : ";
+                is >> sommet2;
+                d_liste_graphes[d_graphe_courant]->matrice()->supprimerArc(sommet1, sommet2);
+                break;
+            case 3:
+                prufer = d_liste_graphes[d_graphe_courant]->matrice()->codagePrufer();
+                os << "{";
+                for(int i = 0; i < prufer.size() ; i++)
+                {
+                    if(i==prufer.size()-1)
+                        os << prufer[i];
+                    else
+                        os << prufer[i] << "," ;
+                }
+                
+                os << "}" << endl;
+                break;
+            default:
+                break;
+        }
+    }
+
 }
 
 void Interface::menu_fs_aps(std::ostream &os, std::istream &is)
@@ -342,7 +396,7 @@ void Interface::menu_fs_aps(std::ostream &os, std::istream &is)
 
 void Interface::menu_creer_graphe(std::ostream &os, std::istream &is)
 {
-    int oriente;
+    bool oriente;
     int nbr_sommet;
 
     clear_console();

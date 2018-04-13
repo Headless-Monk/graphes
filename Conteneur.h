@@ -23,6 +23,8 @@ public:
 
     void liste(Liste *li);
     void fsaps(FsAps *fa) ;
+    void matrice(MatriceAdjacence *adj) ;
+    
     Liste* liste();
     MatriceAdjacence* matrice();
     FsAps* fs_aps();

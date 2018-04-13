@@ -105,6 +105,12 @@ void Conteneur::fsaps(FsAps *fa)
     d_fs_aps = fa;
 }
 
+void Conteneur::matrice(MatriceAdjacence *adj)
+{
+    d_matrice_adjacence = adj;
+}
+
+
 Liste* Conteneur::liste()
 {
     return d_liste;

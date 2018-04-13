@@ -148,7 +148,8 @@ int MatriceAdjacence::plusPetiteFeuille(std::vector<std::vector<int>> adj, std::
 
 std::vector<int> MatriceAdjacence::codagePrufer()
 {
-
+    d_tabPrufer.clear();
+    
     std::vector<std::vector<int>> tamp_adj = d_adj;
     std::vector<bool> estPresent(nombreSommets(), true);
 
