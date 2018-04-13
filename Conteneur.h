@@ -6,7 +6,7 @@
 class Conteneur
 {
 public:
-    //Conteneur();
+    Conteneur();
     Conteneur(bool orientation);
     Conteneur(MatriceAdjacence* matrice, bool orientation);
     Conteneur(FsAps* fsaps, bool orientation);
@@ -19,8 +19,8 @@ public:
     void fsaps_to_adj();
     void adj_to_liste();
     void fsaps_to_liste();
-    //void liste_to_adj();
-    //void liste_to_fsaps();
+    void liste_to_adj();
+    void liste_to_fsaps();
 
     void liste(Liste *li);
     void fsaps(FsAps *fa) ;

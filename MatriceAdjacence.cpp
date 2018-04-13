@@ -10,7 +10,7 @@ int MatriceAdjacence::index_get_adj(int i, int j) const
 {
     if (i>0 && j>0 && i<=nombreSommets() && j<=nombreSommets())
         return d_adj[i][j];
- 
+
     return -1;
 }
 
@@ -34,7 +34,7 @@ int MatriceAdjacence::nombreSommets() const
 int MatriceAdjacence::nombreArcs() const
 {
     int nbArcs = 0;
-    
+
     for (int i = 0; i < nombreSommets(); i++)
     {
         for (int j = 0; j < nombreSommets(); j++)
@@ -43,8 +43,13 @@ int MatriceAdjacence::nombreArcs() const
                 nbArcs++;
         }
     }
-    
+
     return nbArcs;
+}
+
+void MatriceAdjacence::set_nb_sommets(int nb_sommets)
+{
+    d_nbsommets = nb_sommets;
 }
 
 std::vector<int> MatriceAdjacence::getTabPrufer() const
@@ -153,7 +158,7 @@ int MatriceAdjacence::plusPetiteFeuille(std::vector<std::vector<int>> adj, std::
 std::vector<int> MatriceAdjacence::codagePrufer()
 {
     d_tabPrufer.clear();
-    
+
     std::vector<std::vector<int>> tamp_adj = d_adj;
     std::vector<bool> estPresent(nombreSommets(), true);
 
@@ -187,7 +192,7 @@ std::vector<int> MatriceAdjacence::codagePrufer()
 std::vector<std::vector<int>> MatriceAdjacence::getArcs() const
 {
     std::vector<std::vector<int>> tabArcs(nombreArcs(), std::vector<int> (2));
-    
+
     for (int i = 0, k = 0; i < nombreSommets(); i++)
     {
         for (int j = 0; j < nombreSommets(); j++)
@@ -200,7 +205,7 @@ std::vector<std::vector<int>> MatriceAdjacence::getArcs() const
             }
         }
     }
-    
+
     return tabArcs;
 }
 
