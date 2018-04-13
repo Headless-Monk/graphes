@@ -16,9 +16,9 @@ class MatriceAdjacence
         void set_adj(int i, int j, int valeur);
         int nombreSommets() const;
         int nombreArcs() const;
+        void set_nb_sommets(int nb_sommets);
         std::vector<std::vector<int> > get_adj() const;
         std::vector<int> getTabPrufer() const;
-
 
         // affichage
         void afficher(std::ostream& ost) const;

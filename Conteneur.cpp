@@ -1,10 +1,10 @@
 #include "Conteneur.h"
 
-/*Conteneur::Conteneur() :
+Conteneur::Conteneur() :
         d_matrice_adjacence{nullptr},
         d_liste{nullptr},
         d_fs_aps{nullptr}
-{}*/
+{}
 
 Conteneur::Conteneur(bool orientation) :
         d_matrice_adjacence{nullptr},
@@ -111,6 +111,26 @@ void Conteneur::fsaps_to_liste()
 {
     fsaps_to_adj();
     adj_to_liste();
+}
+
+void Conteneur::liste_to_adj()
+{
+    std::vector<std::vector<int> > liste_arcs;
+    liste_arcs = d_liste->liste_arcs();
+
+    d_matrice_adjacence = new MatriceAdjacence();
+    d_matrice_adjacence->set_nb_sommets(liste_arcs[0].size());
+
+    for(int i = 0; i < liste_arcs[0].size(); i++)
+    {
+        d_matrice_adjacence->ajouterArc(liste_arcs[0][i], liste_arcs[1][i]);
+    }
+}
+
+void Conteneur::liste_to_fsaps()
+{
+    liste_to_adj();
+    adj_to_fsasps();
 }
 
 bool Conteneur::get_orientation() const
