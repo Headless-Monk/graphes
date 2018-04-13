@@ -20,9 +20,9 @@ class Liste
         void supprimer_arc(int numero_sommet, int numero_sommet_successeur);
 
         /*GET*/
-        ListePrincipale* sommet_position(int position);
-        bool oriente();
-        std::vector<std::vector<int>> liste_arcs();
+        ListePrincipale* sommet_position(int position) const;
+        bool oriente() const;
+        std::vector<std::vector<int>> liste_arcs() const;
 
         /*surcharges opérateur*/
         friend std::ostream& operator<<(std::ostream& os, const Liste &liste);
@@ -30,7 +30,7 @@ class Liste
     private:
         void supprimer_arcs_vers(int numero_sommet);
         void supprimer_arcs_de(int numero_sommet);
-        bool indice_valide(int position);
+        bool indice_valide(int position) const;
         bool arc_existant(int numero_sommet, int numero_sommet_successeur);
 
         ListePrincipale *d_racine;

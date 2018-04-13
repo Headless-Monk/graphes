@@ -45,24 +45,6 @@ void Liste::afficher(std::ostream &os) const
         os << *liste << std::endl;
         liste = liste->sommet_suivant();
     }
-
-
-    /* TEST */
-
-    os << "Liste olivier :" << std::endl;
-    std::vector<std::vector<int>> l = liste_arcs();
-
-    for(int i=0; i<l.size(); i++)
-    {
-        for(int j=0; j<l[i].size(); j++)
-        {
-            os << l[i][j] << " --> ";
-        }
-        os << std::endl;
-    }
-    os << std::endl;
-
-
 }
 
 void Liste::ajouter_sommet()
@@ -170,7 +152,7 @@ void Liste::supprimer_arc(int numero_sommet, int numero_sommet_successeur)
 
 
 /*GET*/
-ListePrincipale* Liste::sommet_position(int position)
+ListePrincipale* Liste::sommet_position(int position) const
 {
     if(indice_valide(position))
     {
@@ -188,12 +170,12 @@ ListePrincipale* Liste::sommet_position(int position)
     return nullptr;
 }
 
-bool Liste::oriente()
+bool Liste::oriente() const
 {
     return d_oriente;
 }
 
-std::vector<std::vector<int>> Liste::liste_arcs()
+std::vector<std::vector<int>> Liste::liste_arcs() const
 {
     std::vector<std::vector<int>> tabArcs(0, std::vector<int> (2));
 
@@ -246,7 +228,7 @@ void Liste::supprimer_arcs_de(int numero_sommet)
     sommet->supprimer_arcs();
 }
 
-bool Liste::indice_valide(int position)
+bool Liste::indice_valide(int position) const
 {
     return ((position >= 1) && (position <= d_nombre_sommets))?true:false;
 }
