@@ -107,6 +107,12 @@ void Conteneur::adj_to_liste()
     }
 }
 
+void Conteneur::fsaps_to_liste()
+{
+    fsaps_to_adj();
+    adj_to_liste();
+}
+
 bool Conteneur::get_orientation() const
 {
     return d_orientation;

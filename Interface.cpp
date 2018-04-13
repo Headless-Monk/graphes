@@ -249,7 +249,6 @@ void Interface::menu_liste(std::ostream &os, std::istream &is)
 void Interface::menu_matrice(std::ostream &os, std::istream &is)
 {
     int sommet1=0, sommet2=0;
-    int test;
     std::vector<int> prufer;
     int choix = 0;
     while(choix != 4)
@@ -285,7 +284,7 @@ void Interface::menu_matrice(std::ostream &os, std::istream &is)
             case 3:
                 prufer = d_liste_graphes[d_graphe_courant]->matrice()->codagePrufer();
                 os << "{";
-                for(int i = 0; i < prufer.size() ; i++)
+                for(unsigned int i = 0; i < prufer.size() ; i++)
                 {
                     if(i==prufer.size()-1)
                         os << prufer[i];
@@ -427,7 +426,7 @@ void Interface::menu_supprimer_graphe(std::ostream &os, std::istream &is)
 
     clear_console();
 
-    for(int i = 0; i < d_liste_graphes.size(); i++)
+    for(unsigned int i = 0; i < d_liste_graphes.size(); i++)
     {
         os << i << " ------------------------" << endl;
         afficher_graphe(os, i);
@@ -443,7 +442,7 @@ void Interface::menu_supprimer_graphe(std::ostream &os, std::istream &is)
     }
     else
     {
-        for(int i = choix; i < d_liste_graphes.size(); i++)
+        for(unsigned int i = choix; i < d_liste_graphes.size(); i++)
         {
             d_liste_graphes[i] = d_liste_graphes[i+1];
         }

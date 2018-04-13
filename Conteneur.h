@@ -18,8 +18,8 @@ public:
     void adj_to_fsasps();
     void fsaps_to_adj();
     void adj_to_liste();
+    void fsaps_to_liste();
     //void liste_to_adj();
-    //void fsaps_to_liste();
     //void liste_to_fsaps();
 
     void liste(Liste *li);
