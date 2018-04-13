@@ -160,9 +160,8 @@ void Interface::menu_principal(std::ostream &os, std::istream &is)
                 afficher_graphe(os, d_graphe_courant);
 
                 os << "(1) Ajouter un graphe" << endl;
-                os << "(2) Modifier un graphe" << endl;
-                os << "(3) Supprimer un graphe" << endl;
-                os << "(4) Retour" << endl;
+                os << "(2) Supprimer un graphe" << endl;
+                os << "(3) Retour" << endl;
                 is >> choix;
                 clear_console();
                 switch (choix)
@@ -171,9 +170,6 @@ void Interface::menu_principal(std::ostream &os, std::istream &is)
                         menu_creer_graphe(os, is);
                     break;
                     case 2:
-                        menu_modifier_graphe(os, is);
-                    break;
-                    case 3:
                         menu_supprimer_graphe(os, is);
                     break;
                 }
@@ -403,12 +399,6 @@ void Interface::menu_creer_graphe(std::ostream &os, std::istream &is)
     is >> nbr_sommet;
 
     d_liste_graphes.push_back(new Conteneur{new Liste{nbr_sommet, oriente}, oriente});
-}
-
-void Interface::menu_modifier_graphe(std::ostream &os, std::istream &is)
-{
-    os << "Fonction en construction (ou pas... personne ne le sait...)" << endl;
-    system("pause");
 }
 
 void Interface::menu_supprimer_graphe(std::ostream &os, std::istream &is)

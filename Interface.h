@@ -25,7 +25,6 @@ class Interface
         void menu_fs_aps(std::ostream &os, std::istream &is);
 
         void menu_creer_graphe(std::ostream &os, std::istream &is);
-        void menu_modifier_graphe(std::ostream &os, std::istream &is);
         void menu_supprimer_graphe(std::ostream &os, std::istream &is);
 
     private:
