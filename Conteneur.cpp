@@ -17,12 +17,16 @@ Conteneur::Conteneur(MatriceAdjacence* matrice, bool orientation)
 {
     d_matrice_adjacence = matrice;
     d_orientation = orientation;
+    adj_to_fsasps();
+    adj_to_liste();
 }
 
 Conteneur::Conteneur(FsAps* fsaps, bool orientation)
 {
     d_fs_aps = fsaps;
     d_orientation = orientation;
+    fsaps_to_adj();
+    adj_to_liste();
 }
 
 Conteneur::Conteneur(Liste* liste, bool orientation)
@@ -97,9 +101,9 @@ void Conteneur::adj_to_liste()
 
     d_liste = new Liste(d_matrice_adjacence->nombreSommets(), get_orientation());
 
-    for(int i = 0; i < liste_arcs.size(); i++)
+    for(int i = 0; i < liste_arcs[0].size(); i++)
     {
-        //d_liste->
+        d_liste->ajouter_successeur(liste_arcs[0][i], liste_arcs[1][i]);
     }
 }
 
