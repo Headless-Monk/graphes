@@ -64,7 +64,7 @@ void MatriceAdjacence::set_matrice_1_size(int size)
 
 void MatriceAdjacence::set_matrice_2_size(int size)
 {
-    for(int i = 0; i < d_adj.size(); i++)
+    for(unsigned int i = 0; i < d_adj.size(); i++)
         d_adj[i].resize(size);
 }
 

@@ -16,14 +16,12 @@ class ListePrincipale
     public:
         /*GET*/
         int cle_sommet();
-        //Sommet sommet();
         ListePrincipale* sommet_suivant();
         ListeSecondaire* successeur_suivant();
         std::vector<int> liste_successeurs();
 
         /*SET*/
         void cle_sommet(int cle_sommet);
-        //void Sommet(Sommet &sommet);
         void sommet_suivant(ListePrincipale *sommet);
         void successeur_suivant(ListeSecondaire *successeur);
 

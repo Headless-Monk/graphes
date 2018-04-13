@@ -76,27 +76,21 @@ void Interface::afficher_graphe(std::ostream &os, int numero)
         if(d_liste_graphes[numero]->liste())
             os << *d_liste_graphes[numero]->liste();
         else
-            {
-                os << "Graphe liste indisponible" << endl;
-            }
+            os << "Graphe liste indisponible" << endl;
         break;
     case 1 :
         /*matrice*/
         if(d_liste_graphes[numero]->matrice())
             d_liste_graphes[numero]->matrice()->afficher(os);
         else
-        {
-                os << "Graphe matrice indisponible" << endl;
-        }
+            os << "Graphe matrice indisponible" << endl;
         break;
     case 2 :
         /*fs_aps*/
         if(d_liste_graphes[numero]->fs_aps())
             os << *d_liste_graphes[numero]->fs_aps();
         else
-        {
-                os << "Graphe Fs Aps indisponible" << endl;
-        }
+            os << "Graphe Fs Aps indisponible" << endl;
         break;
     default :
         break;
@@ -189,7 +183,6 @@ void Interface::menu_principal(std::ostream &os, std::istream &is)
         }
     }
 }
-
 
 
 void Interface::menu_liste(std::ostream &os, std::istream &is)
@@ -304,7 +297,6 @@ void Interface::menu_fs_aps(std::ostream &os, std::istream &is)
 {
     int sommet1=0, sommet2=0, test , maxi;
     int ** tableau_distance ;
-    //int* fsr_graphe_reduit, * apsr_graphe_reduit; //unused
     int *lc_ordo, *fpc_ordo,* appc_ordo;
     int *d_ordo = new int[6];
     d_ordo[0]=0;d_ordo[1]=2 ;d_ordo[2]=3 ;d_ordo[3]=1;d_ordo[4]=2 ;d_ordo[5]=3 ;
