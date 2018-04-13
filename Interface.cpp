@@ -15,6 +15,8 @@ void Interface::graphe_pour_tests()
 
     l1->ajouter_successeur(1,1);
     l1->ajouter_successeur(1,2);
+    l1->ajouter_successeur(1,3);
+    l1->ajouter_successeur(1,4);
     l1->ajouter_successeur(2,3);
     l1->ajouter_successeur(2,4);
     l1->ajouter_successeur(3,2);
@@ -28,8 +30,8 @@ void Interface::graphe_pour_tests()
 
     d_liste_graphes[0]->liste(l1);
 
-    //d_liste_graphes[0]->liste_to_adj(); plante
-    //d_liste_graphes[0]->liste_to_fsaps(); plante
+    d_liste_graphes[0]->liste_to_adj();
+    d_liste_graphes[0]->liste_to_fsaps();
 
 
     /*graphe 2, oriente*/
@@ -38,6 +40,8 @@ void Interface::graphe_pour_tests()
     MatriceAdjacence* mat = new MatriceAdjacence{};
 
     mat->ajouterArc(1, 1);
+    mat->ajouterArc(1, 2);
+    mat->ajouterArc(1, 3);
     mat->ajouterArc(5, 3);
     mat->ajouterArc(3, 4);
     mat->ajouterArc(1, 5);
@@ -47,8 +51,10 @@ void Interface::graphe_pour_tests()
 
     d_liste_graphes[1]->matrice(mat);
 
-    //d_liste_graphes[1]->adj_to_liste(); seule la première ligne de matrice crée des arcs dans liste
-    //d_liste_graphes[1]->adj_to_fsasps(); plante
+    d_liste_graphes[1]->adj_to_liste();
+    d_liste_graphes[1]->adj_to_fsasps();
+
+    system("pause");
 }
 
 void Interface::clear_console()

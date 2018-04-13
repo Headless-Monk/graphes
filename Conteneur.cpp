@@ -41,26 +41,33 @@ void Conteneur::fsaps_to_adj()
     std::vector<int> tmp_aps = d_fs_aps->getAps();
 
     int n = tmp_aps[0];
-    int m = tmp_fs[0];
+    int m = tmp_fs[0]-n;
+
+    d_matrice_adjacence->set_matrice_1_size(n+1);
+    d_matrice_adjacence->set_matrice_2_size(n+1);
 
     d_matrice_adjacence->set_adj(0,0,n);
     d_matrice_adjacence->set_adj(0,1,m);
 
-    for(int i = 1; i < n; i++)
+    for(int i = 1; i <= n; i++)
     {
-        int nbs = tmp_aps[i+1] - tmp_aps[i]-1;
-        d_matrice_adjacence->set_adj(i,0,nbs);
-        for(int j = 1; tmp_fs[tmp_aps[i]+j-1] != 0; j++)
+        for(int j = 1; j <= n; j++)
         {
-            d_matrice_adjacence->set_adj(i,j,tmp_fs[tmp_aps[i]+j-1]);
+            d_matrice_adjacence->set_adj(i,j,0);
         }
     }
-    int nbs = tmp_fs[0] - tmp_aps[n];
-    d_matrice_adjacence->set_adj(n,0,nbs);
-    for(int j = 1; tmp_fs[tmp_aps[n]+j-1] != 0; j++)
+
+    for(int i = 1; i <= n; i++)
     {
-        d_matrice_adjacence->set_adj(n,j,tmp_fs[tmp_aps[n]+j-1]);
+        int j = tmp_aps[i];
+        while(tmp_fs[i] != 0)
+        {
+            d_matrice_adjacence->set_adj(i,tmp_fs[j],1);
+            j++;
+        }
     }
+
+    d_matrice_adjacence->afficher(std::cout);
 }
 
 void Conteneur::adj_to_fsasps()
@@ -70,8 +77,13 @@ void Conteneur::adj_to_fsasps()
 
     std::vector<std::vector<int> > tmp_adj = d_matrice_adjacence->get_adj();
 
+    d_matrice_adjacence->afficher(cout);
+
     int n = tmp_adj[0][0];
     int m = tmp_adj[0][1];
+
+    tmp_fs.resize(m+n+1);
+    tmp_aps.resize(n+1);
 
     tmp_fs[0] = m+n;
     tmp_aps[0] = n;
@@ -91,6 +103,12 @@ void Conteneur::adj_to_fsasps()
         tmp_fs[pos] = 0;
         ++pos;
     }
+
+    d_fs_aps = new FsAps(tmp_fs, tmp_aps);
+
+    d_fs_aps->afficher(cout);
+
+    system("pause");
 }
 
 void Conteneur::adj_to_liste()
@@ -103,7 +121,7 @@ void Conteneur::adj_to_liste()
 
     for(unsigned int i = 0; i < liste_arcs.size(); i++)
     {
-        d_liste->ajouter_successeur(liste_arcs[0][i], liste_arcs[1][i]);
+        d_liste->ajouter_successeur(liste_arcs[i][0], liste_arcs[i][1]);
     }
 }
 
@@ -116,16 +134,17 @@ void Conteneur::fsaps_to_liste()
 void Conteneur::liste_to_adj()
 {
     std::vector<std::vector<int> > liste_arcs;
+
     liste_arcs = d_liste->liste_arcs();
 
     d_matrice_adjacence = new MatriceAdjacence();
-    d_matrice_adjacence->set_nb_sommets(liste_arcs[0].size());
+    d_matrice_adjacence->set_nb_sommets(liste_arcs.size());
 
     d_matrice_adjacence->redimmension();
 
-    for(unsigned int i = 0; i < liste_arcs[0].size(); i++)
+    for(unsigned int i = 0; i < liste_arcs.size(); i++)
     {
-        d_matrice_adjacence->ajouterArc(liste_arcs[0][i], liste_arcs[1][i]);
+        d_matrice_adjacence->ajouterArc(liste_arcs[i][0], liste_arcs[i][0]);
     }
 }
 

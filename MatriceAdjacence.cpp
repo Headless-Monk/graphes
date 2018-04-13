@@ -57,6 +57,16 @@ std::vector<int> MatriceAdjacence::getTabPrufer() const
     return d_tabPrufer;
 }
 
+void MatriceAdjacence::set_matrice_1_size(int size)
+{
+    d_adj.resize(size);
+}
+
+void MatriceAdjacence::set_matrice_2_size(int size)
+{
+    for(int i = 0; i < d_adj.size(); i++)
+        d_adj[i].resize(size);
+}
 
 void MatriceAdjacence::afficher(std::ostream& ost) const
 {

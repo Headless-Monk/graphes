@@ -20,6 +20,10 @@ class MatriceAdjacence
         std::vector<std::vector<int> > get_adj() const;
         std::vector<int> getTabPrufer() const;
 
+        void set_matrice_1_size(int size);
+        void set_matrice_2_size(int size);
+
+
         // affichage
         void afficher(std::ostream& ost) const;
 
