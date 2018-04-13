@@ -14,7 +14,6 @@ public:
     //~Conteneur();
 
     // méthodes de conversion
-
     void adj_to_fsasps();
     void fsaps_to_adj();
     void adj_to_liste();
