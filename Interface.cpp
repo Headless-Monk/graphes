@@ -8,8 +8,8 @@ Interface::Interface() : d_graphe_courant{0}, d_type_courant{0}, d_liste_graphes
 
 void Interface::graphe_pour_tests()
 {
-    /*graphe 1, liste*/
-    d_liste_graphes.push_back(new Conteneur{1});
+    /*graphe 1, non oriente*/
+    d_liste_graphes.push_back(new Conteneur{0});
 
     Liste *l1 = new Liste{4, 0};
 
@@ -27,32 +27,28 @@ void Interface::graphe_pour_tests()
     l1->ajouter_successeur(1,4);
 
     d_liste_graphes[0]->liste(l1);
-    d_graphe_courant = 0;
 
-    /*graphe 2, matrice*/
+    //d_liste_graphes[0]->liste_to_adj(); plante
+    //d_liste_graphes[0]->liste_to_fsaps(); plante
+
+
+    /*graphe 2, oriente*/
     d_liste_graphes.push_back(new Conteneur{1});
 
     MatriceAdjacence* mat = new MatriceAdjacence{};
-    mat->ajouterArc(1, 2);
-    mat->ajouterArc(1, 3);
-    mat->ajouterArc(1, 4);
-    mat->ajouterArc(1, 5);
-    mat->ajouterArc(1, 4);
-    mat->ajouterArc(1, 5);
-    mat->ajouterArc(1, 6);
-    mat->ajouterArc(1, 7);
-    mat->ajouterArc(1, 8);
 
+    mat->ajouterArc(1, 1);
+    mat->ajouterArc(5, 3);
+    mat->ajouterArc(3, 4);
+    mat->ajouterArc(1, 5);
+    mat->ajouterArc(5, 6);
+    mat->ajouterArc(8, 7);
+    mat->ajouterArc(2, 8);
 
     d_liste_graphes[1]->matrice(mat);
 
-    /*graphe 3, fs aps*/
-    d_liste_graphes.push_back(new Conteneur{1});
-
-    vector<int> tab = {12,0,2,3,0,4,0,5,0,5,0,0} ;
-
-    FsAps *fsaps1 = new FsAps{tab};
-    d_liste_graphes[2]->fsaps(fsaps1);
+    //d_liste_graphes[1]->adj_to_liste(); seule la première ligne de matrice crée des arcs dans liste
+    //d_liste_graphes[1]->adj_to_fsasps(); plante
 }
 
 void Interface::clear_console()
