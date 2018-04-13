@@ -8,12 +8,16 @@ MatriceAdjacence::MatriceAdjacence(std::vector<std::vector<int>> adj, int nbsomm
 
 int MatriceAdjacence::index_get_adj(int i, int j) const
 {
-    return d_adj[i][j];
+    if (i>0 && j>0 && i<=nombreSommets() && j<=nombreSommets())
+        return d_adj[i][j];
+ 
+    return -1;
 }
 
 void MatriceAdjacence::set_adj(int i, int j, int valeur)
 {
-    d_adj[i][j] = valeur;
+    if (i>0 && j>0 && i<=nombreSommets() && j<=nombreSommets())
+        d_adj[i][j] = valeur;
 }
 
 std::vector<std::vector<int> > MatriceAdjacence::get_adj() const
