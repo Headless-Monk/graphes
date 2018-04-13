@@ -101,7 +101,7 @@ void Conteneur::adj_to_liste()
 
     d_liste = new Liste(d_matrice_adjacence->nombreSommets(), get_orientation());
 
-    for(int i = 0; i < liste_arcs[0].size(); i++)
+    for(unsigned int i = 0; i < liste_arcs.size(); i++)
     {
         d_liste->ajouter_successeur(liste_arcs[0][i], liste_arcs[1][i]);
     }

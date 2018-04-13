@@ -237,6 +237,8 @@ void Interface::menu_liste(std::ostream &os, std::istream &is)
                 os << "Saisir le numero du sommet d'arrivee : ";
                 is >> sommet2;
                 d_liste_graphes[d_graphe_courant]->liste()->supprimer_arc(sommet1, sommet2);
+                if(!d_liste_graphes[d_graphe_courant]->liste()->oriente())
+                    d_liste_graphes[d_graphe_courant]->liste()->supprimer_arc(sommet2, sommet1);
                 break;
             default:
                 break;
