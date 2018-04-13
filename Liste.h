@@ -22,6 +22,7 @@ class Liste
         /*GET*/
         ListePrincipale* sommet_position(int position);
         bool oriente();
+        std::vector<std::vector<int>> liste_arcs();
 
         /*surcharges opérateur*/
         friend std::ostream& operator<<(std::ostream& os, const Liste &liste);

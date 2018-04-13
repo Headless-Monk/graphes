@@ -19,6 +19,7 @@ class ListePrincipale
         //Sommet sommet();
         ListePrincipale* sommet_suivant();
         ListeSecondaire* successeur_suivant();
+        std::vector<int> liste_successeurs();
 
         /*SET*/
         void cle_sommet(int cle_sommet);

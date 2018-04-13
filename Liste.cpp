@@ -45,6 +45,24 @@ void Liste::afficher(std::ostream &os) const
         os << *liste << std::endl;
         liste = liste->sommet_suivant();
     }
+
+
+    /* TEST */
+
+    os << "Liste olivier :" << std::endl;
+    std::vector<std::vector<int>> l = liste_arcs();
+
+    for(int i=0; i<l.size(); i++)
+    {
+        for(int j=0; j<l[i].size(); j++)
+        {
+            os << l[i][j] << " --> ";
+        }
+        os << std::endl;
+    }
+    os << std::endl;
+
+
 }
 
 void Liste::ajouter_sommet()
@@ -173,6 +191,28 @@ ListePrincipale* Liste::sommet_position(int position)
 bool Liste::oriente()
 {
     return d_oriente;
+}
+
+std::vector<std::vector<int>> Liste::liste_arcs()
+{
+    std::vector<std::vector<int>> tabArcs(0, std::vector<int> (2));
+
+    ListePrincipale *liste = d_racine;
+
+    while(liste)
+    {
+        std::vector<int> liste_successeur = liste->liste_successeurs();
+
+        for(unsigned int i=0; i<liste_successeur.size(); i++)
+        {
+            std::vector<int> succ{liste->cle_sommet(), liste_successeur[i]};
+            tabArcs.push_back(succ);
+        }
+
+        liste = liste->sommet_suivant();
+    }
+
+    return tabArcs;
 }
 
 /*surcharges operateur*/

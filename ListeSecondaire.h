@@ -2,6 +2,7 @@
 #define LISTESECONDAIRE_H
 
 #include <iostream>
+#include <vector>
 
 #include "ListePrincipale.h"
 
