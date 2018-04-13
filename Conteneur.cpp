@@ -121,7 +121,7 @@ void Conteneur::liste_to_adj()
     d_matrice_adjacence = new MatriceAdjacence();
     d_matrice_adjacence->set_nb_sommets(liste_arcs[0].size());
 
-    for(int i = 0; i < liste_arcs[0].size(); i++)
+    for(unsigned int i = 0; i < liste_arcs[0].size(); i++)
     {
         d_matrice_adjacence->ajouterArc(liste_arcs[0][i], liste_arcs[1][i]);
     }
