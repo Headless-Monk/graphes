@@ -77,8 +77,6 @@ void Conteneur::adj_to_fsasps()
 
     std::vector<std::vector<int> > tmp_adj = d_matrice_adjacence->get_adj();
 
-    d_matrice_adjacence->afficher(cout);
-
     int n = tmp_adj[0][0];
     int m = tmp_adj[0][1];
 
@@ -105,10 +103,6 @@ void Conteneur::adj_to_fsasps()
     }
 
     d_fs_aps = new FsAps(tmp_fs, tmp_aps);
-
-    d_fs_aps->afficher(cout);
-
-    system("pause");
 }
 
 void Conteneur::adj_to_liste()
@@ -144,7 +138,7 @@ void Conteneur::liste_to_adj()
 
     for(unsigned int i = 0; i < liste_arcs.size(); i++)
     {
-        d_matrice_adjacence->ajouterArc(liste_arcs[i][0], liste_arcs[i][0]);
+        d_matrice_adjacence->ajouterArc(liste_arcs[i][0], liste_arcs[i][1]);
     }
 }
 

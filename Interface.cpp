@@ -33,7 +33,6 @@ void Interface::graphe_pour_tests()
     d_liste_graphes[0]->liste_to_adj();
     d_liste_graphes[0]->liste_to_fsaps();
 
-
     /*graphe 2, oriente*/
     d_liste_graphes.push_back(new Conteneur{1});
 
@@ -53,8 +52,6 @@ void Interface::graphe_pour_tests()
 
     d_liste_graphes[1]->adj_to_liste();
     d_liste_graphes[1]->adj_to_fsasps();
-
-    system("pause");
 }
 
 void Interface::clear_console()
