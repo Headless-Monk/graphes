@@ -27,6 +27,22 @@ int MatriceAdjacence::nombreSommets() const
     return d_nbsommets;
 }
 
+int MatriceAdjacence::nombreArcs() const
+{
+    int nbArcs = 0;
+    
+    for (int i = 0; i < nombreSommets(); i++)
+    {
+        for (int j = 0; j < nombreSommets(); j++)
+        {
+            if(d_adj[i][j] == 1)
+                nbArcs++;
+        }
+    }
+    
+    return nbArcs;
+}
+
 std::vector<int> MatriceAdjacence::getTabPrufer() const
 {
     return d_tabPrufer;
@@ -162,6 +178,39 @@ std::vector<int> MatriceAdjacence::codagePrufer()
 
     return d_tabPrufer;
 }
+
+std::vector<std::vector<int>> MatriceAdjacence::getArcs() const
+{
+    std::vector<std::vector<int>> tabArcs(nombreArcs(), std::vector<int> (2));
+    
+    for (int i = 0, k = 0; i < nombreSommets(); i++)
+    {
+        for (int j = 0; j < nombreSommets(); j++)
+        {
+            if(d_adj[i][j] == 1)
+            {
+                tabArcs[k][0] = i+1;
+                tabArcs[k][1] = j+1;
+                k++;
+            }
+        }
+    }
+    
+    return tabArcs;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

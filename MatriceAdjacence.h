@@ -15,6 +15,7 @@ class MatriceAdjacence
         int index_get_adj(int i, int j) const;
         void set_adj(int i, int j, int valeur);
         int nombreSommets() const;
+        int nombreArcs() const;
         std::vector<std::vector<int> > get_adj() const;
         std::vector<int> getTabPrufer() const;
 
@@ -26,6 +27,7 @@ class MatriceAdjacence
         void redimmension();
         void ajouterArc(int i , int j);
         void supprimerArc(int i , int j);
+        std::vector<std::vector<int>> getArcs() const;
 
         //méthode
         int plusPetiteFeuille(std::vector<std::vector<int>> adj, std::vector<bool> estPresent) const;
