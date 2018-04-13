@@ -28,7 +28,7 @@ void Interface::graphe_pour_tests()
 
     d_liste_graphes[0]->liste(l1);
 
-    //d_liste_graphes[0]->liste_to_adj(); plante
+    //d_liste_graphes[0]->liste_to_adj();
     //d_liste_graphes[0]->liste_to_fsaps(); plante
 
 
@@ -47,7 +47,7 @@ void Interface::graphe_pour_tests()
 
     d_liste_graphes[1]->matrice(mat);
 
-    //d_liste_graphes[1]->adj_to_liste(); seule la première ligne de matrice crée des arcs dans liste
+    d_liste_graphes[1]->adj_to_liste(); //seule la première ligne de matrice crée des arcs dans liste
     //d_liste_graphes[1]->adj_to_fsasps(); plante
 }
 

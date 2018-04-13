@@ -103,7 +103,7 @@ void Conteneur::adj_to_liste()
 
     for(unsigned int i = 0; i < liste_arcs.size(); i++)
     {
-        d_liste->ajouter_successeur(liste_arcs[0][i], liste_arcs[1][i]);
+        d_liste->ajouter_successeur(liste_arcs[i][0], liste_arcs[i][1]);
     }
 }
 
@@ -123,7 +123,7 @@ void Conteneur::liste_to_adj()
 
     for(unsigned int i = 0; i < liste_arcs[0].size(); i++)
     {
-        d_matrice_adjacence->ajouterArc(liste_arcs[0][i], liste_arcs[1][i]);
+        d_matrice_adjacence->ajouterArc(liste_arcs[i][0], liste_arcs[i][1]);
     }
 }
 
