@@ -17,6 +17,20 @@ ListeSecondaire* ListePrincipale::successeur_suivant()
     return d_successeur_suivant;
 }
 
+std::vector<int> ListePrincipale::liste_successeurs()
+{
+    std::vector<int> V{};
+
+    ListeSecondaire *successeur = d_successeur_suivant;
+    while(successeur)
+    {
+        V.push_back(successeur->sommet_pointe()->cle_sommet());
+        successeur = successeur->successeur_suivant();
+    }
+
+    return V;
+}
+
 /*SET*/
 
 void ListePrincipale::cle_sommet(int cle_sommet)
