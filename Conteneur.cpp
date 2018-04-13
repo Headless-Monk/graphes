@@ -97,7 +97,7 @@ void Conteneur::adj_to_liste()
 
     d_liste = new Liste(d_matrice_adjacence->nombreSommets(), get_orientation());
 
-    for(int i = 0; i < liste_arcs.size(); i++)
+    for(unsigned int i = 0; i < liste_arcs.size(); i++)
     {
         //d_liste->
     }
