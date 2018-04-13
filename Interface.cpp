@@ -9,7 +9,7 @@ Interface::Interface() : d_graphe_courant{0}, d_type_courant{0}, d_liste_graphes
 void Interface::graphe_pour_tests()
 {
     /*graphe 1, liste*/
-    d_liste_graphes.push_back(new Conteneur{});
+    d_liste_graphes.push_back(new Conteneur{1});
 
     Liste *l1 = new Liste{4, 0};
 
@@ -30,7 +30,7 @@ void Interface::graphe_pour_tests()
     d_graphe_courant = 0;
 
     /*graphe 2, matrice*/
-    d_liste_graphes.push_back(new Conteneur{});
+    d_liste_graphes.push_back(new Conteneur{1});
 
     MatriceAdjacence* mat = new MatriceAdjacence{};
     mat->ajouterArc(1, 2);
@@ -43,11 +43,11 @@ void Interface::graphe_pour_tests()
     mat->ajouterArc(1, 7);
     mat->ajouterArc(1, 8);
 
-    
+
     d_liste_graphes[1]->matrice(mat);
 
     /*graphe 3, fs aps*/
-    d_liste_graphes.push_back(new Conteneur{});
+    d_liste_graphes.push_back(new Conteneur{1});
 
     vector<int> tab = {12,0,2,3,0,4,0,5,0,5,0,0} ;
 
@@ -253,16 +253,16 @@ void Interface::menu_matrice(std::ostream &os, std::istream &is)
     while(choix != 4)
     {
         clear_console();
-        
+
         afficher_graphe(os);
-        
+
         os << "(1) Ajouter arc" << endl;
         os << "(2) Supprimer arc" << endl;
         os << "(3) Codage de Prufer" << endl;
         os << "(4) Retour" << endl << endl;
-        
+
         is >> choix;
-        
+
         switch (choix)
         {
             case 1:
@@ -290,7 +290,7 @@ void Interface::menu_matrice(std::ostream &os, std::istream &is)
                     else
                         os << prufer[i] << "," ;
                 }
-                
+
                 os << "}" << endl;
                 break;
             default:
@@ -410,7 +410,7 @@ void Interface::menu_creer_graphe(std::ostream &os, std::istream &is)
     os << "Quel est le nombre de sommets ?" << endl;
     is >> nbr_sommet;
 
-    d_liste_graphes.push_back(new Conteneur{new Liste{nbr_sommet, oriente}});
+    d_liste_graphes.push_back(new Conteneur{new Liste{nbr_sommet, oriente}, oriente});
 }
 
 void Interface::menu_modifier_graphe(std::ostream &os, std::istream &is)

@@ -1,24 +1,34 @@
 #include "Conteneur.h"
 
-Conteneur::Conteneur() :
+/*Conteneur::Conteneur() :
         d_matrice_adjacence{nullptr},
         d_liste{nullptr},
         d_fs_aps{nullptr}
+{}*/
+
+Conteneur::Conteneur(bool orientation) :
+        d_matrice_adjacence{nullptr},
+        d_liste{nullptr},
+        d_fs_aps{nullptr},
+        d_orientation{orientation}
 {}
 
-Conteneur::Conteneur(MatriceAdjacence* matrice)
+Conteneur::Conteneur(MatriceAdjacence* matrice, bool orientation)
 {
     d_matrice_adjacence = matrice;
+    d_orientation = orientation;
 }
 
-Conteneur::Conteneur(FsAps* fsaps)
+Conteneur::Conteneur(FsAps* fsaps, bool orientation)
 {
     d_fs_aps = fsaps;
+    d_orientation = orientation;
 }
 
-Conteneur::Conteneur(Liste* liste)
+Conteneur::Conteneur(Liste* liste, bool orientation)
 {
     d_liste = liste;
+    d_orientation = orientation;
 }
 
 void Conteneur::fsaps_to_adj()
@@ -77,22 +87,30 @@ void Conteneur::adj_to_fsasps()
         tmp_fs[pos] = 0;
         ++pos;
     }
+}
 
+void Conteneur::adj_to_liste()
+{
+    std::vector<std::vector<int> > liste_arcs;
 
+    liste_arcs = d_matrice_adjacence->getArcs();
 
+    d_liste = new Liste(d_matrice_adjacence->nombreSommets(), get_orientation());
 
+    for(int i = 0; i < liste_arcs.size(); i++)
+    {
+        //d_liste->
+    }
+}
 
+bool Conteneur::get_orientation() const
+{
+    return d_orientation;
+}
 
-
-
-
-
-
-
-
-
-
-
+void Conteneur::set_orientation(bool orientation)
+{
+    d_orientation = orientation;
 }
 
 void Conteneur::liste(Liste *li)
