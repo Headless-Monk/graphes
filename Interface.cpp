@@ -37,7 +37,7 @@ void Interface::graphe_pour_tests()
     d_liste_graphes.push_back(new Conteneur{1});
 
     MatriceAdjacence* mat = new MatriceAdjacence{};
-
+s
     mat->ajouterArc(1, 1);
     mat->ajouterArc(1, 2);
     mat->ajouterArc(1, 3);

@@ -77,8 +77,8 @@ void Conteneur::adj_to_fsasps()
 
     std::vector<std::vector<int> > tmp_adj = d_matrice_adjacence->get_adj();
 
-    int n = tmp_adj[0][0];
-    int m = tmp_adj[0][1];
+    int n = d_matrice_adjacence->nombreSommets();
+    int m = d_matrice_adjacence->nombreArcs();
 
     tmp_fs.resize(m+n+1);
     tmp_aps.resize(n+1);
@@ -86,11 +86,11 @@ void Conteneur::adj_to_fsasps()
     tmp_fs[0] = m+n;
     tmp_aps[0] = n;
 
-    int pos = 1;
-    for(int i = 1; i <= n; i++)
+    int pos = 0;
+    for(int i = 0; i < n; i++)
     {
         tmp_aps[i] = pos;
-        for(int j = 1; j <= n; ++j)
+        for(int j = 0; j < n; ++j)
         {
             if(tmp_adj[i][j] == 1)
             {
