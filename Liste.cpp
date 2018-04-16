@@ -197,6 +197,14 @@ std::vector<std::vector<int>> Liste::liste_arcs() const
     return tabArcs;
 }
 
+
+
+
+int Liste::nombre_sommets() const
+{
+    return d_nombre_sommets;
+}
+
 /*surcharges operateur*/
 
 std::ostream& operator<<(std::ostream &os, const Liste &liste)

@@ -23,6 +23,7 @@ class Liste
         ListePrincipale* sommet_position(int position) const;
         bool oriente() const;
         std::vector<std::vector<int>> liste_arcs() const;
+        int nombre_sommets() const;
 
         /*surcharges opérateur*/
         friend std::ostream& operator<<(std::ostream& os, const Liste &liste);

@@ -130,7 +130,7 @@ void Conteneur::liste_to_adj()
     liste_arcs = d_liste->liste_arcs();
 
     d_matrice_adjacence = new MatriceAdjacence();
-    d_matrice_adjacence->set_nb_sommets(liste_arcs.size());
+    d_matrice_adjacence->set_nb_sommets(d_liste->nombre_sommets()-1);
 
     d_matrice_adjacence->redimmension();
 
